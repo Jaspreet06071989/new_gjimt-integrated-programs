@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Stack Integrated MCA | GJIMT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#b11217;
+  --blue:#1a237e;
+  --dark:#1f2937;
+  --light:#f4f6fa;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:var(--light);
+  color:#333;
+  line-height:1.7;
+}
+
+/* HEADER */
+header{
+  background:#fff;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logos{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logos img{
+  height:45px;
+}
+
+nav a{
+  margin-left:22px;
+  text-decoration:none;
+  color:var(--dark);
+  font-weight:500;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  width:0;
+  height:2px;
+  background:var(--primary);
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  transition:.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* HERO */
+.hero{
+  background:
+  linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+  url("https://images.unsplash.com/photo-1519389950473-47ba0277781c") center/cover no-repeat;
+  padding:90px 20px;
+  text-align:center;
+  color:#fff;
+}
+
+.hero h1{
+  font-size:2.6rem;
+}
+
+.hero p{
+  max-width:950px;
+  margin:10px auto 0;
+  font-size:1.1rem;
+}
+
+/* BADGES */
+.badges{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+.badge{
+  background:var(--primary);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:30px;
+  font-weight:600;
+}
+
+/* CONTENT */
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  background:#fff;
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+h2{
+  color:var(--blue);
+  margin:30px 0 15px;
+}
+
+ul{
+  margin-left:20px;
+  margin-bottom:15px;
+}
+
+li{margin-bottom:6px}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#fff;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* SEMESTER ACCORDION */
+.semester{
+  background:#f9fafc;
+  margin-bottom:18px;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,.06);
+}
+
+.semester h3{
+  padding:16px 20px;
+  background:#e8eaf6;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--blue);
+}
+
+.semester h3 span{
+  font-size:1.4rem;
+  font-weight:600;
+}
+
+.semester-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s ease, padding .3s ease;
+  padding:0 20px;
+}
+
+.semester-content.open{
+  padding:20px;
+  max-height:4000px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--blue);
+  color:#fff;
+  text-align:center;
+  padding:18px;
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logos">
+      <img src="https://www.gjimt.ac.in/wp-content/uploads/2025/09/gjimt-logo.png" alt="GJIMT">
+
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Full Stack–Integrated MCA</h1>
+  <p>
+    A 4-Semester MCA Program in Full Stack Engineering with Industry Shadow Projects
+    and embedded GSDC Certifications, preparing students for enterprise-grade software roles.
+  </p>
+
+  <div class="badges">
+    <div class="badge">4 Credits</div>
+    <div class="badge">42 Hours</div>
+    <div class="badge">3 Global Certifications</div>
+    <div class="badge">₹70,000 / Semester</div>
+  </div>
+</section>
+
+<div class="container">
+
+<h2>Why Choose This Program</h2>
+<div class="grid">
+  <div class="card">✔ IKG-PTU compliant core MCA curriculum</div>
+  <div class="card">✔ Full Stack depth: Frontend, Backend, Cloud & DevOps</div>
+  <div class="card">✔ One Industry Shadow Project every semester</div>
+  <div class="card">✔ Embedded GSDC certifications (no add-on burden)</div>
+  <div class="card">✔ Capstone aligned with real industry problem statements</div>
+</div>
+
+<h2>Semester-wise Curriculum</h2>
+
+<div class="semester">
+<h3>Semester 1: Foundation + Frontend Engineering <span>+</span></h3>
+<div class="semester-content">
+<p><b>Core Focus:</b> Mathematical Foundations, C/Python, COA, Data Structures, Communication</p>
+<p><b>Full Stack Skills:</b> HTML5, CSS3, JavaScript (ES6+), Git/GitHub, UI/UX (Figma)</p>
+<p><b>Shadow Project:</b> Amazon-style E-Commerce Frontend</p>
+<ul>
+<li>Product catalogue UI</li>
+<li>Search & filters</li>
+<li>Cart UI</li>
+<li>Deployed static frontend</li>
+</ul>
+<p><b>Benchmark:</b> Amazon Marketplace UI/UX</p>
+</div>
+</div>
+
+<div class="semester">
+<h3>Semester 2: Backend Engineering & Databases <span>+</span></h3>
+<div class="semester-content">
+<p><b>Core Focus:</b> OOP, DBMS, OS, Software Engineering</p>
+<p><b>Full Stack Skills:</b> Node.js / Spring Boot, REST APIs, SQL & NoSQL, Authentication</p>
+<p><b>GSDC Certification:</b> GSDC Certified Full Stack Developer</p>
+<p><b>Shadow Project:</b> Full Stack Commerce Platform</p>
+<ul>
+<li>REST APIs</li>
+<li>Payment simulation</li>
+<li>Order & inventory management</li>
+<li>Cloud-hosted backend</li>
+</ul>
+<p><b>Benchmark:</b> Amazon Seller & Order Systems</p>
+</div>
+</div>
+
+<div class="semester">
+<h3>Semester 3: Advanced Full Stack & Cloud <span>+</span></h3>
+<div class="semester-content">
+<p><b>Core Focus:</b> Computer Networks, Web Technologies, Elective (AI / DA / Cyber)</p>
+<p><b>Full Stack Skills:</b> React / Angular, Cloud (AWS/Azure/GCP), Docker, CI/CD</p>
+<p><b>GSDC Certification:</b> GSDC Certified Cloud Computing Foundation</p>
+<p><b>Shadow Project:</b> Meta-style Social Collaboration Platform</p>
+<ul>
+<li>User feeds</li>
+<li>Media uploads</li>
+<li>Real-time notifications</li>
+<li>WebSocket chat</li>
+</ul>
+<p><b>Benchmark:</b> Facebook / Instagram architectures</p>
+</div>
+</div>
+
+<div class="semester">
+<h3>Semester 4: Capstone & Enterprise Readiness <span>+</span></h3>
+<div class="semester-content">
+<p><b>Core Focus:</b> Major Project, Seminar & Viva, Elective II</p>
+<p><b>Full Stack Skills:</b> System design, Microservices, Security, Performance</p>
+<p><b>GSDC Certification:</b> GSDC Certified DevOps Practitioner</p>
+<p><b>Capstone Project:</b> Uber / Microsoft-style Cloud Native Platform</p>
+<ul>
+<li>Architecture diagrams</li>
+<li>Production-ready code</li>
+<li>CI/CD pipeline</li>
+<li>Cloud deployment</li>
+<li>Client-style defence</li>
+</ul>
+</div>
+</div>
+
+<h2>Career Opportunities</h2>
+<div class="grid">
+  <div class="card">Full Stack Developer</div>
+  <div class="card">Software Development Engineer (SDE)</div>
+  <div class="card">Frontend / Backend Engineer</div>
+  <div class="card">Cloud Support Engineer</div>
+  <div class="card">DevOps Associate</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 Gian Jyoti Institute of Management & Technology | Full Stack Integrated MCA
+</footer>
+
+<script>
+document.querySelectorAll(".semester h3").forEach(head=>{
+  head.addEventListener("click",()=>{
+    const content=head.nextElementSibling;
+    content.classList.toggle("open");
+    head.querySelector("span").textContent=
+      content.classList.contains("open")?"−":"+";
+  });
+});
+</script>
+
+</body>
+</html>
