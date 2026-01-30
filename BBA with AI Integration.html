@@ -3,235 +3,334 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BBA with AI Integration - GJIMT</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<title>BBA with AI Integration | GJIMT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        font-family: 'Roboto', sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f0f4f8;
-        color: #333;
-        line-height: 1.6;
+:root{
+  --primary:#b11217;
+  --dark:#1f1f1f;
+  --gray:#f4f6fa;
+  --blue:#1a237e;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:var(--gray);
+  color:#333;
+  line-height:1.7;
+}
+
+/* HEADER */
+header{
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.navbar{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+}
+
+.logo{
+  color:var(--primary);
+  font-weight:700;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--dark);
+  margin-left:25px;
+  font-weight:500;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  transition:.3s;
+}
+
+nav a:hover::after{width:100%;}
+
+/* HERO */
+.hero{
+  background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+  url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f") center/cover no-repeat;
+  padding:90px 20px;
+  color:#fff;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:2.6rem;
+}
+
+/* CONTENT */
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  background:#fff;
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+h2{
+  color:var(--blue);
+  margin:30px 0 15px;
+}
+
+ul{
+  margin-left:20px;
+  margin-bottom:15px;
+}
+
+li{margin-bottom:6px;}
+
+/* INFO STRIP */
+.info-strip{
+  background:#eef1fb;
+  padding:15px 20px;
+  border-left:5px solid var(--primary);
+  border-radius:8px;
+  margin-bottom:20px;
+  font-weight:500;
+}
+
+/* ACCORDION */
+.semester{
+  background:#f9fafc;
+  margin-bottom:18px;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,.06);
+}
+
+.semester h3{
+  padding:16px 20px;
+  background:#e8eaf6;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.semester h3 span{
+  font-size:1.4rem;
+  font-weight:600;
+}
+
+.semester-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s ease, padding .3s ease;
+  padding:0 20px;
+}
+
+.semester-content.open{
+  padding:20px;
+  max-height:3000px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--dark);
+  color:#ccc;
+  text-align:center;
+  padding:18px;
+  font-size:.9rem;
+}
+header {
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
     }
-    .container {
-        max-width: 1100px;
-        margin: 30px auto;
-        background: #fff;
-        padding: 30px 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    h1 {
-        text-align: center;
-        color: #1a237e;
-        font-size: 2.4rem;
-        margin-bottom: 15px;
+
+    .logos img {
+      height: 45px;
     }
-    h2 {
-        color: #3949ab;
-        font-size: 1.8rem;
-        margin: 25px 0 15px;
-    }
-    h3 {
-        background: #e8eaf6;
-        color: #1a237e;
-        margin: 10px 0;
-        padding: 12px 20px;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: 0.3s background;
-    }
-    h3:hover {
-        background: #c5cae9;
-    }
-    p {
-        margin: 8px 0;
-    }
-    ul {
-        margin: 8px 0 16px 20px;
-    }
-    .ai-tools li, .projects li {
-        margin-bottom: 6px;
-    }
-    .badge {
-        display: inline-block;
-        background-color: #1a237e;
-        color: #fff;
-        padding: 2px 8px;
-        margin-right: 5px;
-        border-radius: 4px;
-        font-size: 0.85rem;
-    }
-    .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease, padding 0.3s ease;
-        padding: 0 20px;
-        background: #f9f9f9;
-        border-left: 4px solid #3949ab;
-        margin-bottom: 10px;
-        border-radius: 0 0 8px 8px;
-    }
-    .accordion-content.open {
-        padding: 15px 20px;
-    }
+
+    nav a {
+  color: #1f1f1f;
+  text-decoration: none;
+  margin-left: 22px;
+  font-weight: 500;
+  position: relative;
+}
+
+
+    nav a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+
+    nav a:hover::after {
+  width: 100%;
+}
 </style>
 </head>
+
 <body>
 
+<header>
+  <div class="navbar">
+    <div class="logos">
+      <img src="https://www.gjimt.ac.in/wp-content/uploads/2025/09/gjimt-logo.png" alt="GJIMT Logo">
+    
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+       <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>BBA with AI Integration</h1>
+  <p>AI-powered management education for future-ready leaders</p>
+</section>
+
 <div class="container">
-    <h1>BBA with AI Integration</h1>
-    <p><strong>Integration:</strong> 4 Credits | 42 Hours | 3 Global Certifications | Fee: 50,000 INR per Semester</p>
-    <p>GJIMT offers a unique 6 Semester BBA program with AI-enabled, tool-dependent experiential learning model. The focus is on managerial and analytical application of AI, not coding.</p>
 
-    <h2>Why you should do this Program:</h2>
-    <ul>
-        <li>Strong business fundamentals with AI support</li>
-        <li>Progressive analytical and strategic skills</li>
-        <li>Ethical and responsible AI usage</li>
-        <li>High employability and managerial readiness</li>
-    </ul>
+<div class="info-strip">
+Integration: 4 Credits | 42 Hours | 3 Global Certifications | Fee: ₹50,000 per Semester
+</div>
 
-    <h2>Program Semesters</h2>
+<p>
+GJIMT offers a 6-semester BBA program with AI-enabled, tool-dependent experiential learning.
+The focus is on managerial, analytical, and strategic application of AI—without coding dependency.
+</p>
 
-    <!-- Semester 1 -->
-    <h3>Semester 1: Business Foundations & Communication</h3>
-    <div class="accordion-content">
-        <p><strong>Core Focus:</strong> Principles of Management, Business Communication, Microeconomics, Business Mathematics, Financial Accounting.</p>
-        <p><strong>AI Integration Focus:</strong></p>
-        <ul class="ai-tools">
-            <li><span class="badge">AI</span>Concept clarity with AI</li>
-            <li><span class="badge">AI</span>Business communication & presentation</li>
-            <li><span class="badge">AI</span>Basic data-supported reasoning</li>
-        </ul>
-        <p><strong>AI Tools Integrated:</strong></p>
-        <ul class="ai-tools">
-            <li><span class="badge">ChatGPT</span>Concept explanation, case discussion</li>
-            <li><span class="badge">Copilot</span>Reports, summaries</li>
-            <li><span class="badge">Grammarly AI</span>Professional writing</li>
-            <li><span class="badge">Excel AI</span>Basic numerical analysis</li>
-            <li><span class="badge">Canva AI</span>Presentations</li>
-        </ul>
-        <p><strong>Benchmarked Shadow Projects:</strong></p>
-        <ul class="projects">
-            <li><span class="badge">Project</span>Local Market Study (Reliance Retail) – Demand, customer segments, pricing analysis</li>
-            <li><span class="badge">Project</span>Customer Communication Audit (Amazon) – Review emails, FAQs, and chat responses</li>
-        </ul>
-    </div>
+<h2>Why Choose This Program</h2>
+<ul>
+<li>Strong business and management foundations</li>
+<li>AI-assisted analytical and strategic skills</li>
+<li>Ethical and responsible AI usage</li>
+<li>High employability and leadership readiness</li>
+</ul>
 
-    <!-- Semester 2 -->
-    <h3>Semester 2: Functional Business Basics</h3>
-    <div class="accordion-content">
-        <p><strong>Core Focus:</strong> Marketing Management, Human Resource Management, Business Statistics, Cost Accounting.</p>
-        <ul class="ai-tools">
-            <li><span class="badge">AI</span>Functional understanding</li>
-            <li><span class="badge">AI</span>Metric-based analysis</li>
-        </ul>
-        <ul class="ai-tools">
-            <li><span class="badge">ChatGPT</span>Functional diagnostics</li>
-            <li><span class="badge">Excel AI</span>Marketing & HR metrics</li>
-            <li><span class="badge">Power BI</span>Simple dashboards</li>
-        </ul>
-        <ul class="projects">
-            <li><span class="badge">Project</span>Marketing Mix Effectiveness Study (HUL)</li>
-            <li><span class="badge">Project</span>HR Productivity Snapshot (Infosys)</li>
-        </ul>
-    </div>
+<h2>Program Structure</h2>
 
-    <!-- Semester 3 -->
-    <h3>Semester 3: Financial, Operations & MIS Orientation</h3>
-    <div class="accordion-content">
-        <p><strong>Core Focus:</strong> Financial Management, Operations Management, MIS, Business Environment.</p>
-        <ul class="ai-tools">
-            <li><span class="badge">AI</span>Financial interpretation</li>
-            <li><span class="badge">AI</span>Process efficiency analysis</li>
-        </ul>
-        <ul class="ai-tools">
-            <li><span class="badge">ChatGPT</span>Financial & operations reasoning</li>
-            <li><span class="badge">Excel AI</span>Ratio, CVP, process metrics</li>
-            <li><span class="badge">Power BI</span>Operations dashboards</li>
-        </ul>
-        <ul class="projects">
-            <li><span class="badge">Project</span>Cost & Profitability Analysis (Maruti Suzuki)</li>
-            <li><span class="badge">Project</span>Operations Efficiency Study (Swiggy)</li>
-        </ul>
-    </div>
+<!-- SEMESTER 1 -->
+<div class="semester">
+<h3>Semester 1: Business Foundations & Communication <span>+</span></h3>
+<div class="semester-content">
+<p><strong>Core Focus:</strong> Principles of Management, Business Communication, Microeconomics, Business Mathematics, Financial Accounting</p>
+<p><strong>AI Tools:</strong> ChatGPT, Copilot, Grammarly AI, Excel AI, Canva AI</p>
+<p><strong>Benchmarked Projects:</strong> Local Market Study (Reliance Retail), Customer Communication Audit (Amazon)</p>
+</div>
+</div>
 
-    <!-- Semester 4 -->
-    <h3>Semester 4: Digital Business & Entrepreneurship</h3>
-    <div class="accordion-content">
-        <p><strong>Core Focus:</strong> Digital Marketing, Entrepreneurship Development, E-Commerce, Supply Chain Basics.</p>
-        <ul class="ai-tools">
-            <li><span class="badge">AI</span>Digital and platform thinking</li>
-            <li><span class="badge">AI</span>Business model evaluation</li>
-        </ul>
-        <ul class="ai-tools">
-            <li><span class="badge">ChatGPT</span>Business model analysis</li>
-            <li><span class="badge">Google Trends</span>Market intelligence</li>
-            <li><span class="badge">Notion AI</span>Business model documentation</li>
-        </ul>
-        <ul class="projects">
-            <li><span class="badge">Project</span>Digital Funnel & Presence Analysis (Flipkart)</li>
-            <li><span class="badge">Project</span>Startup Business Model Evaluation (Startup India)</li>
-        </ul>
-    </div>
+<!-- SEMESTER 2 -->
+<div class="semester">
+<h3>Semester 2: Functional Business Basics <span>+</span></h3>
+<div class="semester-content">
+<p><strong>Core Focus:</strong> Marketing, HRM, Business Statistics, Cost Accounting</p>
+<p><strong>AI Tools:</strong> ChatGPT, Excel AI, Power BI</p>
+<p><strong>Benchmarked Projects:</strong> Marketing Mix Study (HUL), HR Productivity Snapshot (Infosys)</p>
+</div>
+</div>
 
-    <!-- Semester 5 -->
-    <h3>Semester 5: Strategy, Analytics & Industry Orientation</h3>
-    <div class="accordion-content">
-        <p><strong>Core Focus:</strong> Strategic Management, Business Analytics, Electives (Marketing/HR/Finance).</p>
-        <ul class="ai-tools">
-            <li><span class="badge">AI</span>Competitive benchmarking</li>
-            <li><span class="badge">AI</span>Data-supported strategy</li>
-        </ul>
-        <ul class="ai-tools">
-            <li><span class="badge">ChatGPT</span>Strategy frameworks & insights</li>
-            <li><span class="badge">Power BI</span>Comparative dashboards</li>
-            <li><span class="badge">Excel AI</span>Trend and scenario analysis</li>
-        </ul>
-        <ul class="projects">
-            <li><span class="badge">Project</span>Competitive Benchmarking Study (ITC / Tata Consumer)</li>
-            <li><span class="badge">Project</span>Functional Analytics Project (Elective-Based)</li>
-        </ul>
-    </div>
+<!-- SEMESTER 3 -->
+<div class="semester">
+<h3>Semester 3: Finance, Operations & MIS <span>+</span></h3>
+<div class="semester-content">
+<p><strong>Core Focus:</strong> Financial Management, Operations, MIS, Business Environment</p>
+<p><strong>AI Tools:</strong> ChatGPT, Excel AI, Power BI</p>
+<p><strong>Benchmarked Projects:</strong> Cost Analysis (Maruti Suzuki), Operations Efficiency (Swiggy)</p>
+</div>
+</div>
 
-    <!-- Semester 6 -->
-    <h3>Semester 6: Ethics, Leadership & Capstone</h3>
-    <div class="accordion-content">
-        <p><strong>Core Focus:</strong> Business Ethics & CSR, Leadership, Major Project / Viva.</p>
-        <ul class="ai-tools">
-            <li><span class="badge">AI</span>Ethical AI usage</li>
-            <li><span class="badge">AI</span>Executive decision-making</li>
-        </ul>
-        <ul class="ai-tools">
-            <li><span class="badge">ChatGPT</span>Analysis and recommendations</li>
-            <li><span class="badge">Power BI</span>Capstone dashboards</li>
-            <li><span class="badge">Beautiful.ai / Tome</span>Executive presentations</li>
-            <li><span class="badge">Turnitin / Copyleaks</span>Ethical compliance</li>
-        </ul>
-        <ul class="projects">
-            <li><span class="badge">Project</span>CSR & Sustainability Review (Mahindra Group)</li>
-            <li><span class="badge">Project</span>Capstone Strategy Presentation (Fortune 500)</li>
-        </ul>
-    </div>
+<!-- SEMESTER 4 -->
+<div class="semester">
+<h3>Semester 4: Digital Business & Entrepreneurship <span>+</span></h3>
+<div class="semester-content">
+<p><strong>Core Focus:</strong> Digital Marketing, Entrepreneurship, E-Commerce, Supply Chain</p>
+<p><strong>AI Tools:</strong> ChatGPT, Google Trends, Notion AI</p>
+<p><strong>Benchmarked Projects:</strong> Digital Presence Analysis (Flipkart), Startup Model Evaluation</p>
+</div>
+</div>
+
+<!-- SEMESTER 5 -->
+<div class="semester">
+<h3>Semester 5: Strategy, Analytics & Industry Orientation <span>+</span></h3>
+<div class="semester-content">
+<p><strong>Core Focus:</strong> Strategic Management, Business Analytics, Electives</p>
+<p><strong>AI Tools:</strong> ChatGPT, Power BI, Excel AI</p>
+<p><strong>Benchmarked Projects:</strong> Competitive Benchmarking (ITC/Tata), Functional Analytics Project</p>
+</div>
+</div>
+
+<!-- SEMESTER 6 -->
+<div class="semester">
+<h3>Semester 6: Ethics, Leadership & Capstone <span>+</span></h3>
+<div class="semester-content">
+<p><strong>Core Focus:</strong> Business Ethics, Leadership, Major Project</p>
+<p><strong>AI Tools:</strong> ChatGPT, Power BI, Beautiful.ai, Turnitin</p>
+<p><strong>Benchmarked Projects:</strong> CSR Review (Mahindra), Capstone Strategy Presentation</p>
+</div>
+</div>
 
 </div>
 
+<footer>
+© 2026 Gian Jyoti Institute of Management & Technology | All Rights Reserved
+</footer>
+
 <script>
-    // Accordion Functionality
-    const acc = document.querySelectorAll("h3");
-    acc.forEach(item => {
-        item.addEventListener("click", () => {
-            const panel = item.nextElementSibling;
-            panel.classList.toggle("open");
-            if(panel.style.maxHeight){
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
-    });
+document.querySelectorAll(".semester h3").forEach(head=>{
+  head.addEventListener("click",()=>{
+    const content = head.nextElementSibling;
+    content.classList.toggle("open");
+    head.querySelector("span").textContent =
+      content.classList.contains("open") ? "−" : "+";
+  });
+});
 </script>
 
 </body>
