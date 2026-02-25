@@ -441,9 +441,46 @@ window.onclick = function (e) {
   }
 };
 </script>
+<!-- ===== AUTO QR POPUP (SEPARATE MODULE) ===== -->
+<div id="qrAutoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeQRPopup()">&times;</span>
 
+    <h3 style="margin-bottom:8px;">Scan for Admissions Info</h3>
+    <p style="font-size:14px;">Scan the QR code to know more</p>
+
+    <img src="qr-code.jpeg" alt="GJIMT QR Code" class="modal-img">
+  </div>
+</div>
+  <script>
+/* ================= QR POPUP ONLY ================= */
+
+function openQRPopup() {
+  const modal = document.getElementById("qrAutoModal");
+  if (modal) modal.style.display = "flex";
+}
+
+function closeQRPopup() {
+  const modal = document.getElementById("qrAutoModal");
+  if (modal) modal.style.display = "none";
+}
+
+/* Auto open QR popup on page load */
+window.addEventListener("load", function () {
+  setTimeout(openQRPopup, 800); // delay for smooth UX
+});
+
+/* Close QR popup when clicking outside */
+window.addEventListener("click", function (e) {
+  const modal = document.getElementById("qrAutoModal");
+  if (e.target === modal) {
+    closeQRPopup();
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
