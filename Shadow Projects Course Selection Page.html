@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Projects Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;display:flex;align-items:center;justify-content:center}
+.container{width:90%;max-width:1100px;text-align:center}
+h1{color:#fff;margin-bottom:10px;font-size:36px}
+p{color:#e0e7ff;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#fff;border-radius:15px;padding:25px;cursor:pointer;transition:0.3s;box-shadow:0 10px 25px rgba(0,0,0,0.2)}
+.card:hover{transform:translateY(-10px);background:#eef2ff}
+.card h3{color:#4f46e5;margin-bottom:10px}
+.card span{font-size:14px;color:#555}
+.footer{margin-top:30px;color:#ddd}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎓 Shadow Projects Portal</h1>
+  <p>Select your course to access dashboard</p>
+
+  <div class="grid">
+
+    <div class="card" onclick="openCourse('bca_ai.html')">
+      <h3>BCA with AI</h3>
+      <span>Artificial Intelligence Projects</span>
+    </div>
+
+    <div class="card" onclick="openCourse('bba_ai.html')">
+      <h3>BBA with AI</h3>
+      <span>Business + AI Projects</span>
+    </div>
+
+    <div class="card" onclick="openCourse('bcom_ai.html')">
+      <h3>BCom with AI</h3>
+      <span>Commerce + AI</span>
+    </div>
+
+    <div class="card" onclick="openCourse('mba_ai.html')">
+      <h3>MBA with AI</h3>
+      <span>Management AI Projects</span>
+    </div>
+
+    <div class="card" onclick="openCourse('mca_ai.html')">
+      <h3>MCA with AI</h3>
+      <span>Advanced AI Systems</span>
+    </div>
+
+    <div class="card" onclick="openCourse('mca_security.html')">
+      <h3>MCA (Info Security)</h3>
+      <span>Cybersecurity Projects</span>
+    </div>
+
+    <div class="card" onclick="openCourse('mca_fullstack.html')">
+      <h3>MCA (Full Stack)</h3>
+      <span>Web Development Projects</span>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    © 2026 Shadow Project System | Designed for Academic Excellence
+  </div>
+</div>
+
+<script>
+function openCourse(page){
+  window.location.href = page;
+}
+</script>
+
+</body>
+</html>
