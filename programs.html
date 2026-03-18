@@ -375,7 +375,33 @@
   gap: 8px;
   width: 100%;
 }
+/* ===== Shadow Project Floating Button ===== */
+.shadow-btn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #b11217;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  animation: blink 1.2s infinite;
+  z-index: 9999;
+}
 
+.shadow-btn:hover{
+  background: #8f0d12;
+  transform: scale(1.05);
+}
+
+/* Blinking Effect */
+@keyframes blink{
+  0%{opacity:1}
+  50%{opacity:0.5}
+  100%{opacity:1}
+}
 .mca-badges a {
   text-decoration: none;
   font-size: 0.8rem;
@@ -509,8 +535,13 @@
   }, { threshold: 0.15 });
 
   cards.forEach(card => observer.observe(card));
+	function openShadow(){
+  window.location.href = "Shadow Projects Course Selection Page.html";
+}
 </script>
-
+<div class="shadow-btn" onclick="openShadow()">
+  🚀 Shadow Projects
+</div>
 </body>
 </html>
 
