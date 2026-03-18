@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA with AI Shadow Projects</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f1f5f9}
+.login{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#667eea,#764ba2)}
+.box{background:#fff;padding:30px;border-radius:15px;width:350px;box-shadow:0 10px 30px rgba(0,0,0,0.2);text-align:center}
+.box h1{margin-bottom:10px;color:#4f46e5}
+input,button,textarea{width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc}
+button{background:#667eea;color:#fff;border:none;cursor:pointer;transition:.3s}
+button:hover{background:#4f46e5}
+.dashboard{display:flex;height:100vh}
+.sidebar{width:250px;background:#1e293b;color:#fff;padding:20px}
+.sidebar h2{margin-bottom:20px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:12px;margin:8px 0;background:#334155;border-radius:8px;cursor:pointer}
+.sidebar li:hover{background:#475569}
+.main{flex:1;padding:20px;overflow:auto}
+.header{font-size:22px;font-weight:600;margin-bottom:15px;color:#4f46e5}
+.card{background:#fff;padding:20px;border-radius:12px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
+.hidden{display:none}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd}
+a{color:#4f46e5;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="login" id="loginPage">
+  <div class="box">
+    <h1>BCA with AI</h1>
+    <h3>Shadow Projects Portal</h3>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<div id="dashboard" class="dashboard hidden">
+  <div class="sidebar">
+    <h2>BCA AI Panel</h2>
+    <ul id="menu"></ul>
+  </div>
+  <div class="main">
+    <div class="header" id="welcome"></div>
+
+    <div class="card">
+      <h3>📂 Google Drive Shadow Projects</h3>
+      <a href="https://drive.google.com/drive/folders/1pA3-u8DdJpeyRlV51S77p1j_iwlRsswe" target="_blank">Open Project Folder</a>
+    </div>
+
+    <div id="upload" class="section hidden card">
+      <h3>Upload Student Excel</h3>
+      <input type="file" id="file">
+      <button onclick="uploadExcel()">Upload</button>
+    </div>
+
+    <div id="students" class="section hidden card">
+      <h3>Students</h3>
+      <table>
+        <thead><tr><th>Name</th><th>Username</th><th>Password</th><th>Submissions</th></tr></thead>
+        <tbody id="studentTable"></tbody>
+      </table>
+    </div>
+
+    <div id="mentorUpload" class="section hidden card">
+      <h3>Add Task</h3>
+      <textarea id="taskText" placeholder="Enter task"></textarea>
+      <button onclick="addTask()">Add Task</button>
+      <div id="taskList"></div>
+    </div>
+
+    <div id="submissionsView" class="section hidden card">
+      <h3>Student Submissions</h3>
+      <div id="allSubmissions"></div>
+    </div>
+
+    <div id="studentDashboard" class="section hidden">
+      <div class="card">
+        <h3>Tasks</h3>
+        <div id="studentTasks"></div>
+      </div>
+      <div class="card">
+        <h3>Submit Assignment</h3>
+        <input type="file" id="studentFile">
+        <button onclick="submitAssignment()">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let mentor={username:"mentor",password:"123"}
+let students=JSON.parse(localStorage.getItem('students')||'{}')
+let tasks=JSON.parse(localStorage.getItem('tasks')||'[]')
+let submissions=JSON.parse(localStorage.getItem('submissions')||'{}')
+let currentUser=null
+
+function login(){
+ let u=username.value.trim(),p=password.value.trim()
+ if(u===mentor.username&&p===mentor.password){
+  currentUser="mentor";openDash()
+  welcome.innerText="Welcome Mentor - BCA with AI"
+  menu.innerHTML=`<li onclick="show('upload')">Upload Excel</li>
+  <li onclick="showStudents()">Students</li>
+  <li onclick="show('mentorUpload')">Tasks</li>
+  <li onclick="showSubmissions()">Submissions</li>
+  <li onclick="logout()">Logout</li>`
+  displayTasks()
+ }
+ else if(students[u]&&students[u].password===p){
+  currentUser=u;openDash()
+  welcome.innerText="Welcome "+students[u].name+" (BCA AI)"
+  menu.innerHTML=`<li onclick="showStudent()">Dashboard</li><li onclick="logout()">Logout</li>`
+  showStudent()
+ }
+ else alert("Invalid Login")
+}
+
+function openDash(){loginPage.style.display="none";dashboard.classList.remove('hidden')}
+function logout(){location.reload()}
+function show(id){document.querySelectorAll('.section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden')}
+
+function uploadExcel(){
+ let f=file.files[0];if(!f)return alert('select file')
+ let r=new FileReader()
+ r.onload=e=>{
+  let wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'})
+  let data=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])
+  students={}
+  data.forEach((r,i)=>{
+   let n=r.Name||Object.values(r)[0]
+   let u=n.replace(/ /g,'').toLowerCase()+i
+   students[u]={name:n,password:Math.random().toString(36).slice(-6)}
+  })
+  localStorage.setItem('students',JSON.stringify(students))
+  showStudents()
+ }
+ r.readAsArrayBuffer(f)
+}
+
+function showStudents(){show('students');studentTable.innerHTML=""
+ for(let u in students){
+  let c=submissions[u]?submissions[u].length:0
+  studentTable.innerHTML+=`<tr><td>${students[u].name}</td><td>${u}</td><td>${students[u].password}</td><td>${c}</td></tr>`
+ }
+}
+
+function addTask(){
+ let t=taskText.value
+ tasks.push(t)
+ localStorage.setItem('tasks',JSON.stringify(tasks))
+ displayTasks()
+}
+
+function displayTasks(){
+ taskList.innerHTML=""
+ tasks.forEach(t=>{
+  taskList.innerHTML+=`<div class='card'>${t}</div>`
+ })
+}
+
+function showStudent(){show('studentDashboard');studentTasks.innerHTML=""
+ tasks.forEach(t=>{
+  studentTasks.innerHTML+=`<div class='card'>${t}</div>`
+ })
+}
+
+function submitAssignment(){
+ let f=studentFile.files[0];if(!f)return alert('upload file')
+ if(!submissions[currentUser]) submissions[currentUser]=[]
+ submissions[currentUser].push({date:new Date().toLocaleString()})
+ localStorage.setItem('submissions',JSON.stringify(submissions))
+ alert('Submitted - Upload file to Google Drive manually')
+}
+
+function showSubmissions(){
+ show('submissionsView')
+ allSubmissions.innerHTML=""
+ for(let u in submissions){
+  submissions[u].forEach(s=>{
+   allSubmissions.innerHTML+=`<div class='card'><b>${u}</b><br>${s.date}</div>`
+  })
+ }
+}
+</script>
+
+</body>
+</html>
