@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCA AI Shadow Projects Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f4f7fb;}
+
+/* LOGIN */
+#loginPage{
+  height:100vh;display:flex;justify-content:center;align-items:center;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+.login-box{
+  width:350px;padding:30px;border-radius:20px;
+  background:rgba(255,255,255,0.1);color:white;text-align:center;
+}
+input{width:90%;padding:12px;margin:10px 0;border-radius:10px;border:none;}
+button{padding:12px 20px;border:none;border-radius:10px;background:#6366f1;color:white;cursor:pointer;}
+button:hover{background:#4f46e5;}
+
+/* DASHBOARD */
+#dashboard{display:none;height:100vh;}
+.container{display:flex;height:100%;}
+
+.sidebar{
+  width:260px;background:white;padding:20px;
+  box-shadow:2px 0 10px rgba(0,0,0,0.1);
+}
+.menu-item{
+  padding:10px;margin:8px 0;border-radius:8px;cursor:pointer;
+}
+.menu-item:hover{background:#6366f1;color:white;}
+.logout{background:#ef4444;color:white;text-align:center;}
+
+.main{flex:1;padding:20px;overflow-y:auto;}
+
+.topbar{
+  background:white;padding:15px;border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section{
+  margin-top:20px;background:white;padding:20px;
+  border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* Accordion */
+.accordion{
+  background:#6366f1;color:white;padding:12px;border-radius:8px;
+  cursor:pointer;margin-top:10px;
+}
+.panel{
+  display:none;padding:10px;background:#eef2ff;border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="login-box">
+    <h2>MCA Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h3>MCA Dashboard</h3>
+
+<div class="menu-item" onclick="go('overview')">Overview</div>
+<div class="menu-item" onclick="go('project1')">Project 1</div>
+<div class="menu-item" onclick="go('project2')">Project 2</div>
+<div class="menu-item" onclick="go('project3')">Project 3</div>
+<div class="menu-item" onclick="go('assessment')">Assessment</div>
+<div class="menu-item logout" onclick="logout()">Logout</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+<h2>GJIMT – MCA with AI Integration</h2>
+<p>Semester 1 | Programming Foundations & Computer Systems</p>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section" id="overview">
+<h3>Semester 1 Shadow Project Overview</h3>
+<p>Semester 1 covers:</p>
+<ul>
+<li>Programming in C/C++</li>
+<li>Data Structures</li>
+<li>Computer Organisation</li>
+<li>Operating Systems</li>
+<li>Discrete Mathematics</li>
+<li>Communication Skills</li>
+</ul>
+
+<p><b>Projects (Weeks 3–16):</b></p>
+<ul>
+<li>Algorithm Optimisation Study → Google</li>
+<li>System Utility Program → Microsoft</li>
+<li>Data Structure Performance Evaluation → Amazon</li>
+</ul>
+</div>
+
+<!-- PROJECT 1 -->
+<div class="section" id="project1">
+<h3>Shadow Project 1 – Algorithm Optimisation Study</h3>
+<p><b>Benchmark:</b> Google</p>
+
+<div class="accordion">Benchmark Narrative</div>
+<div class="panel">
+<p>Students compare algorithms like Google engineers focusing on time and space complexity.</p>
+</div>
+
+<div class="accordion">Weekly Plan (Weeks 3–6)</div>
+<div class="panel">
+<ul>
+<li>Week 3: Select problem, write baseline, use AI for explanation</li>
+<li>Week 4: Generate alternatives using AI</li>
+<li>Week 5: Compare algorithms (time, space, readability)</li>
+<li>Week 6: Submit report + source files</li>
+</ul>
+</div>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="section" id="project2">
+<h3>Shadow Project 2 – System Utility Program</h3>
+<p><b>Benchmark:</b> Microsoft</p>
+
+<div class="accordion">Benchmark Narrative</div>
+<div class="panel">
+<p>Develop clean, user-friendly utility programs inspired by Microsoft.</p>
+</div>
+
+<div class="accordion">Utility Options</div>
+<div class="panel">
+<ul>
+<li>File Handler</li>
+<li>Process Monitor Simulator</li>
+<li>Student Record Manager</li>
+<li>Mini Calculator</li>
+</ul>
+</div>
+
+<div class="accordion">Weekly Plan (Weeks 7–12)</div>
+<div class="panel">
+<ul>
+<li>Week 7: Choose utility and refine</li>
+<li>Week 8: Algorithm + flowchart</li>
+<li>Weeks 9–10: Coding with Copilot</li>
+<li>Week 11: Testing and UI improvement</li>
+<li>Week 12: Final submission + viva</li>
+</ul>
+</div>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="section" id="project3">
+<h3>Shadow Project 3 – Data Structure Performance Evaluation</h3>
+<p><b>Benchmark:</b> Amazon</p>
+
+<div class="accordion">Benchmark Narrative</div>
+<div class="panel">
+<p>Analyze stacks, queues, linked lists for real-world scenarios.</p>
+</div>
+
+<div class="accordion">Weekly Plan (Weeks 13–16)</div>
+<div class="panel">
+<ul>
+<li>Week 13: Map scenarios using AI</li>
+<li>Week 14: Implement data structures</li>
+<li>Week 15: Test performance</li>
+<li>Week 16: Submit report + viva</li>
+</ul>
+</div>
+</div>
+
+<!-- ASSESSMENT -->
+<div class="section" id="assessment">
+<h3>Assessment Blueprint</h3>
+
+<table border="1" cellpadding="10">
+<tr><th>Project</th><th>Benchmark</th><th>Marks</th></tr>
+<tr><td>Algorithm Optimisation Study</td><td>Google</td><td>15</td></tr>
+<tr><td>System Utility Program</td><td>Microsoft</td><td>25</td></tr>
+<tr><td>Data Structure Evaluation</td><td>Amazon</td><td>20</td></tr>
+<tr><td>AI Ethics & Reflection</td><td>-</td><td>5</td></tr>
+<tr><td><b>Total</b></td><td></td><td><b>65</b></td></tr>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+function login(){
+  let u=document.getElementById('username').value;
+  let p=document.getElementById('password').value;
+  if(u==='admin' && p==='1234'){
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+  } else alert('Invalid Login');
+}
+
+function logout(){
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+}
+
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+let acc=document.getElementsByClassName("accordion");
+for(let i=0;i<acc.length;i++){
+  acc[i].addEventListener("click",function(){
+    let panel=this.nextElementSibling;
+    panel.style.display=(panel.style.display==="block")?"none":"block";
+  });
+}
+</script>
+
+</body>
+</html>
