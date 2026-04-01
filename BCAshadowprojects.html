@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCA Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;}
+
+/* LOGIN */
+#loginPage{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#1e3c72,#2a5298);
+}
+
+.login-box{
+  width:360px;padding:30px;border-radius:20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  text-align:center;color:white;
+  transition:0.4s;
+}
+
+.login-box:hover{
+  transform:scale(1.05);
+}
+
+input{width:90%;padding:12px;margin:10px 0;border-radius:10px;border:none;}
+button{padding:12px 20px;border:none;border-radius:10px;background:#6366f1;color:white;cursor:pointer;transition:0.3s;}
+button:hover{background:#4f46e5;transform:scale(1.05);}
+
+/* DASHBOARD */
+#dashboard{display:none;height:100vh;background:#f4f7fb;}
+.container{display:flex;height:100%;}
+
+.sidebar{
+  width:250px;background:white;padding:20px;
+  box-shadow:2px 0 10px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.menu-item{
+  padding:12px;margin:10px 0;border-radius:8px;cursor:pointer;
+  transition:0.3s;
+}
+
+.menu-item:hover{
+  background:linear-gradient(45deg,#6366f1,#8b5cf6);
+  color:white;
+  transform:translateX(10px);
+}
+
+.logout{
+  background:#ef4444;color:white;text-align:center;
+}
+
+.main{flex:1;padding:20px;overflow-y:auto;}
+
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:white;padding:15px;border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section{
+  margin-top:20px;background:white;padding:20px;
+  border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.08);
+  transition:0.4s;
+}
+
+.section:hover{
+  transform:translateY(-10px) scale(1.02);
+  background:linear-gradient(120deg,#eef2ff,#ffffff);
+}
+
+/* POPUP */
+.modal{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.6);justify-content:center;align-items:center;
+}
+
+.modal-content{
+  background:white;padding:20px;border-radius:10px;width:350px;text-align:left;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(0.7);} to{transform:scale(1);} }
+
+.close{float:right;cursor:pointer;font-weight:bold;}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="login-box">
+    <h2>Student Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+<div class="container">
+
+<div class="sidebar" id="sidebar">
+  <h3>Dashboard</h3>
+  
+  <div class="menu-item logout" onclick="logout()">Logout</div>
+</div>
+
+<div class="main">
+<div class="topbar">
+  <h3>BCA AI Shadow Project</h3>
+ 
+</div>
+
+<div class="section">
+<h3>1. Benchmark Mapping</h3>
+<p><b>Algorithm Logic Comparison</b> → Google (Search ranking, trade-offs)</p>
+<p><b>Utility Program Development</b> → Microsoft (Windows/Office tools mindset)</p>
+</div>
+
+<div class="section">
+<h3>2. Shadow Project 1 – Algorithm Logic Comparison</h3>
+<p><b>Theme:</b> Think like Google engineers.</p>
+<ul>
+<li>Compare multiple C solutions</li>
+<li>Focus on performance, clarity, robustness</li>
+<li>Test with multiple inputs</li>
+<li>Justify best design</li>
+<li>Use ChatGPT/Gemini for logic and explanation</li>
+</ul>
+<p><b>Example:</b> Top 3 largest numbers (Sorting, Single Pass, Selection)</p>
+</div>
+
+<div class="section">
+<h3>3. Shadow Project 2 – Utility Program Development</h3>
+<p><b>Theme:</b> Build Microsoft-style utility.</p>
+<ul>
+<li>Menu driven system</li>
+<li>User friendly prompts</li>
+<li>Error handling</li>
+<li>Documentation</li>
+<li>Use Copilot, ChatGPT, Notion AI</li>
+</ul>
+</div>
+
+<div class="section">
+<h3>4. AI Integration</h3>
+<ul>
+<li>ChatGPT / Gemini → logic</li>
+<li>GitHub Copilot → coding</li>
+<li>Notion AI → documentation</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- POPUP -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePopup()">X</span>
+    <div id="modalText"></div>
+  </div>
+</div>
+
+<script>
+function login(){
+  let u=document.getElementById('username').value;
+  let p=document.getElementById('password').value;
+  if(u==='admin' && p==='1234'){
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+  } else { alert('Invalid Login'); }
+}
+
+function logout(){
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+}
+
+function openPopup(type){
+  let content='';
+  if(type==='benchmark'){
+    content='Google vs Microsoft benchmarking explained.';
+  } else if(type==='project1'){
+    content='Compare algorithms and choose best approach.';
+  } else if(type==='project2'){
+    content='Build utility like gradebook system.';
+  } else if(type==='ai'){
+    content='Use ChatGPT, Copilot and AI tools.';
+  } else {
+    content=type;
+  }
+  document.getElementById('modalText').innerHTML=content;
+  document.getElementById('modal').style.display='flex';
+}
+
+function closePopup(){
+  document.getElementById('modal').style.display='none';
+}
+</script>
+
+</body>
+</html>
