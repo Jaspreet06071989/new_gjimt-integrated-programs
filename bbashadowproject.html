@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BBA AI Shadow Project Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f4f7fb;}
+
+/* LOGIN */
+#loginPage{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#1e3c72,#2a5298);
+}
+
+.login-box{
+  width:360px;padding:30px;border-radius:20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  text-align:center;color:white;
+}
+
+input{width:90%;padding:12px;margin:10px 0;border-radius:10px;border:none;}
+button{padding:12px 20px;border:none;border-radius:10px;background:#6366f1;color:white;cursor:pointer;}
+button:hover{background:#4f46e5;}
+
+/* DASHBOARD */
+#dashboard{display:none;height:100vh;}
+.container{display:flex;height:100%;}
+
+.sidebar{
+  width:260px;background:white;padding:20px;
+  box-shadow:2px 0 10px rgba(0,0,0,0.1);
+  overflow-y:auto;
+}
+
+.menu-item{
+  padding:10px;margin:8px 0;border-radius:8px;cursor:pointer;
+}
+.menu-item:hover{
+  background:#6366f1;color:white;
+}
+
+.logout{background:#ef4444;color:white;text-align:center;}
+
+.main{flex:1;padding:20px;overflow-y:auto;}
+
+.topbar{
+  background:white;padding:15px;border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section{
+  margin-top:20px;background:white;padding:20px;
+  border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* Accordion */
+.accordion{
+  background:#6366f1;color:white;padding:12px;border-radius:8px;
+  cursor:pointer;margin-top:10px;
+}
+.panel{
+  display:none;padding:10px;background:#eef2ff;border-radius:8px;
+}
+
+/* Scroll smooth */
+html{scroll-behavior:smooth;}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="login-box">
+    <h2>Student Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h3>BBA Dashboard</h3>
+
+<div class="menu-item" onclick="scrollToSection('intro')">Introduction</div>
+<div class="menu-item" onclick="scrollToSection('ai')">AI Framework</div>
+<div class="menu-item" onclick="scrollToSection('project1')">Project 1</div>
+<div class="menu-item" onclick="scrollToSection('project2')">Project 2</div>
+<div class="menu-item" onclick="scrollToSection('guidelines')">Guidelines</div>
+<div class="menu-item" onclick="scrollToSection('assessment')">Assessment</div>
+<div class="menu-item" onclick="scrollToSection('faq')">FAQ</div>
+<div class="menu-item logout" onclick="logout()">Logout</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+<h2>BBA Semester 1: AI-Integrated Shadow Project</h2>
+<p>GJIMT | Academic Year 2026-27</p>
+</div>
+
+<!-- INTRO -->
+<div class="section" id="intro">
+<h3>Introduction</h3>
+<p>This implementation plan guides BBA students through AI-integrated shadow projects aligned with business fundamentals.</p>
+
+<h4>Program Philosophy</h4>
+<ul>
+<li>Clarify business concepts</li>
+<li>Support data-driven reasoning</li>
+<li>Enhance communication</li>
+<li>Develop business competencies</li>
+</ul>
+
+<h4>Core Subjects</h4>
+<ul>
+<li>Principles of Management</li>
+<li>Business Communication</li>
+<li>Microeconomics</li>
+<li>Business Mathematics</li>
+<li>Financial Accounting</li>
+</ul>
+</div>
+
+<!-- AI -->
+<div class="section" id="ai">
+<h3>AI Integration Framework</h3>
+
+<div class="accordion">AI Tools</div>
+<div class="panel">
+<ul>
+<li>ChatGPT / Gemini – Concept explanation</li>
+<li>Copilot / Google AI – Reports</li>
+<li>Grammarly AI – Writing</li>
+<li>Excel AI – Data analysis</li>
+<li>Canva AI – Presentation</li>
+</ul>
+</div>
+
+<div class="accordion">AI Usage Principles</div>
+<div class="panel">
+<ul>
+<li>AI as assistant</li>
+<li>Verify information</li>
+<li>Transparency</li>
+<li>Critical thinking</li>
+<li>Ethical usage</li>
+</ul>
+</div>
+</div>
+
+<!-- PROJECT 1 -->
+<div class="section" id="project1">
+<h3>Project 1: Local Market Study</h3>
+<p><b>Benchmark:</b> Reliance Retail</p>
+
+<div class="accordion">Objective</div>
+<div class="panel">
+<p>Analyze demand, customer segments, and pricing.</p>
+</div>
+
+<div class="accordion">Deliverables</div>
+<div class="panel">
+<ul>
+<li>Market Report (1000-1200 words)</li>
+<li>Excel Data Sheet</li>
+<li>Presentation (8-10 slides)</li>
+<li>AI Documentation</li>
+</ul>
+</div>
+
+<div class="accordion">Steps</div>
+<div class="panel">
+<ul>
+<li>Select Business</li>
+<li>Define Market</li>
+<li>Conduct Research</li>
+<li>Segment Customers</li>
+<li>Analyze Pricing</li>
+<li>Insights</li>
+<li>Create Report</li>
+</ul>
+</div>
+
+<div class="accordion">Assessment</div>
+<div class="panel">
+<ul>
+<li>Market Research – 20%</li>
+<li>Customer Analysis – 20%</li>
+<li>Pricing – 20%</li>
+<li>AI Use – 15%</li>
+<li>Report – 15%</li>
+<li>Presentation – 10%</li>
+</ul>
+</div>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="section" id="project2">
+<h3>Project 2: Customer Communication Audit</h3>
+<p><b>Benchmark:</b> Amazon</p>
+
+<div class="accordion">Objective</div>
+<div class="panel">
+<p>Audit business communication quality.</p>
+</div>
+
+<div class="accordion">Deliverables</div>
+<div class="panel">
+<ul>
+<li>Audit Report</li>
+<li>Sample Analysis</li>
+<li>Improvement Guide</li>
+<li>Presentation</li>
+</ul>
+</div>
+
+<div class="accordion">Steps</div>
+<div class="panel">
+<ul>
+<li>Select Business</li>
+<li>Analyze Communication</li>
+<li>Find Issues</li>
+<li>Recommend Improvements</li>
+<li>Create Guidelines</li>
+<li>Final Report</li>
+</ul>
+</div>
+
+<div class="accordion">Assessment</div>
+<div class="panel">
+<ul>
+<li>Analysis – 25%</li>
+<li>Issues – 20%</li>
+<li>Recommendations – 20%</li>
+<li>Grammarly AI – 15%</li>
+<li>Report – 12%</li>
+<li>Presentation – 8%</li>
+</ul>
+</div>
+</div>
+
+<!-- GUIDELINES -->
+<div class="section" id="guidelines">
+<h3>General Guidelines</h3>
+
+<ul>
+<li>Start early</li>
+<li>Verify data</li>
+<li>Use professional language</li>
+<li>Document AI usage</li>
+<li>Follow ethics</li>
+</ul>
+
+<h4>Ethical AI Usage</h4>
+<ul>
+<li>No copying</li>
+<li>Maintain originality</li>
+<li>Respect privacy</li>
+<li>Verify AI outputs</li>
+</ul>
+</div>
+
+<!-- ASSESSMENT -->
+<div class="section" id="assessment">
+<h3>Assessment</h3>
+
+<ul>
+<li>Total Weightage: 40%</li>
+<li>Project 1: 20%</li>
+<li>Project 2: 20%</li>
+</ul>
+
+<h4>Grading</h4>
+<ul>
+<li>A+: 90-100</li>
+<li>A: 80-89</li>
+<li>B+: 70-79</li>
+<li>B: 60-69</li>
+<li>C: 50-59</li>
+<li>D: 40-49</li>
+<li>F: Below 40</li>
+</ul>
+</div>
+
+<!-- FAQ -->
+<div class="section" id="faq">
+<h3>FAQs</h3>
+
+<div class="accordion">Can I work in groups?</div>
+<div class="panel"><p>Projects are individual.</p></div>
+
+<div class="accordion">AI usage allowed?</div>
+<div class="panel"><p>Yes, but ethically.</p></div>
+
+<div class="accordion">Time required?</div>
+<div class="panel"><p>12-15 hours per project.</p></div>
+
+<div class="accordion">Deadlines?</div>
+<div class="panel"><p>Project 1: Week 5, Project 2: Week 9</p></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+function login(){
+  let u=document.getElementById('username').value;
+  let p=document.getElementById('password').value;
+  if(u==='admin' && p==='1234'){
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+  } else alert('Invalid Login');
+}
+
+function logout(){
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+}
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView();
+}
+
+/* Accordion */
+let acc=document.getElementsByClassName("accordion");
+for(let i=0;i<acc.length;i++){
+  acc[i].addEventListener("click",function(){
+    this.classList.toggle("active");
+    let panel=this.nextElementSibling;
+    panel.style.display=panel.style.display==="block"?"none":"block";
+  });
+}
+</script>
+
+</body>
+</html>
