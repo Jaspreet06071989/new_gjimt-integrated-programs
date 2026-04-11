@@ -1,285 +1,35 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Integrated Programs | GJIMT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Integrated Programs | GJIMT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-
-/* ================= MOBILE & TABLET RESPONSIVE ================= */
-
-/* Tablets (≤ 1024px) */
-@media (max-width: 1024px) {
-  .grid {
-    gap: 16px;
-  }
-
-  .program-card {
-    width: 210px;
-    min-height: 190px;
-	   text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
+<style>
+:root {
+  --primary: #b11217;
+  --dark: #1f1f1f;
+  --light: #ffffff;
+  --gray: #f4f4f4;
 }
 
-/* Mobile (≤ 768px) */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav a {
-    margin-left: 15px;
-    font-size: 0.9rem;
-  }
-
-  .hero {
-    padding: 60px 15px;
-  }
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-
-	.grid {
-  display: flex;
-  gap: 20px;
-  align-items: stretch;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-
-  .program-card {
-    width: 100%;
-    min-height: 180px;
-	  text-align: center;
-  }
+body {
+  background: var(--gray);
+  color: #333;
 }
 
-/* Small Mobile (≤ 480px) */
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .program-card span {
-    font-size: 1.6rem;
-  }
-
-  .program-card h3 {
-    font-size: 0.9rem;
-  }
-
-  footer {
-    font-size: 0.8rem;
-  }
-}
-
-	  
-    :root {
-      --primary: #b11217;
-      --dark: #1f1f1f;
-      --light: #ffffff;
-      --gray: #f4f4f4;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background: var(--gray);
-      color: #333;
-    }
-
-    /* ================= HEADER ================= */
-    header {
-      background: #ffffff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-/* ================= DESKTOP GRID (DEFAULT) ================= */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* all courses in one row */
-  gap: 20px;
-  align-items: stretch;
-}
-
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-    }
-
-    .logo {
-      color: var(--primary);
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--dark);
-      margin-left: 25px;
-      font-weight: 500;
-      position: relative;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: 0.3s;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ================= HERO ================= */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-      url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f") center/cover no-repeat;
-      padding: 90px 20px;
-      text-align: center;
-      color: white;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* ================= SECTION ================= */
-    section {
-      padding: 70px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2.section-title {
-      text-align: center;
-      color: var(--primary);
-      margin-bottom: 40px;
-      font-size: 2.2rem;
-    }
-
-    /* ================= PROGRAM GRID ================= */
-
-
-.grid::-webkit-scrollbar {
-  height: 6px;
-}
-
-
-
-/* Optional: hide scrollbar (looks premium) */
-.grid::-webkit-scrollbar {
-  height: 6px;
-}
-
-.grid::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-}
-
-
- .program-card {
-  background: #ffffff;
-  padding: 20px 18px;
-  border-radius: 16px;
-  text-align: center;
-  color: #222;
-  text-decoration: none;
-
-  width: 230px;
-  min-height: 200px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;   /* ⭐ THIS is the key */
-
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: 0.35s ease;
-  border: 2px solid transparent;
-}
-
-/* REMOVE dark overlay completely */
-.program-card::before {
-  display: none;
-}
-
-.program-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary);
-}
-.program-card span {
-  font-size: 1.9rem;
-  margin-bottom: 12px;
-}
-
-.program-card h3 {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  font-weight: 600;
-}
-
-    /* ================= FOOTER ================= */
-    footer {
-      background: var(--dark);
-      color: #ccc;
-      text-align: center;
-      padding: 18px;
-      font-size: 0.9rem;
-    }
-
-    /* ================= ANIMATION ================= */
-    .show {
-      opacity: 1;
-      transform: translateY(0);
-      transition: 0.6s ease;
-    }
-
-    @media(max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-    }
-	 header {
+/* HEADER */
+header {
   background: #ffffff;
   position: sticky;
   top: 0;
@@ -287,96 +37,115 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-    }
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
 
-    .logos {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+.logos img {
+  height: 45px;
+}
 
-    .logos img {
-      height: 45px;
-    }
-
-    nav a {
+nav a {
   color: #1f1f1f;
   text-decoration: none;
   margin-left: 22px;
   font-weight: 500;
-  position: relative;
 }
 
+/* HERO */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+  url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f") center/cover no-repeat;
+  padding: 90px 20px;
+  text-align: center;
+  color: white;
+}
 
-    nav a::after {
-  content: "";
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  position: absolute;
-  left: 0;
-  bottom: -5px;
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.program-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   transition: 0.3s;
 }
 
-
-    nav a:hover::after {
-  width: 100%;
-}
-.program-card ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 12px;
-  position: relative;
-  z-index: 1;
+.program-card:hover {
+  transform: translateY(-6px);
+  border: 2px solid var(--primary);
 }
 
-.program-card ul li {
-  font-size: 0.85rem;
-  margin: 6px 0;
-  opacity: 0.9;
-}
-.mca-links {
-  margin-top: 14px;
-  position: relative;
-  z-index: 2;
+.program-card span {
+  font-size: 1.8rem;
 }
 
-.mca-links a {
-  font-size: 0.8rem;
-  margin: 5px 0;
-  padding: 5px 8px;
-  border-radius: 5px;
+.program-card h3 {
+  font-size: 0.95rem;
 }
 
-
-.program-card:hover .mca-links a {
-  background: rgba(255,255,255,0.25);
-}
-
-.mca-links a:hover {
-  background: rgba(255,255,255,0.35);
-}
-.mca-card {
-  background: #fafafa;
-}
-
+/* MCA badges */
 .mca-badges {
   margin-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
 }
-/* ===== Shadow Project Floating Button ===== */
-.shadow-btn{
+
+.mca-badges a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #f2f2f2;
+  color: #333;
+}
+
+.mca-badges a:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* QR BUTTON */
+.qr-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: #0a7cff;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.qr-btn:hover {
+  transform: scale(1.05);
+}
+
+/* SHADOW BUTTON */
+.shadow-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -386,94 +155,73 @@
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  animation: blink 1.2s infinite;
   z-index: 9999;
 }
 
-.shadow-btn:hover{
-  background: #8f0d12;
-  transform: scale(1.05);
+/* QR MODAL */
+.qr-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Blinking Effect */
-@keyframes blink{
-  0%{opacity:1}
-  50%{opacity:0.5}
-  100%{opacity:1}
-}
-.mca-badges a {
-  text-decoration: none;
-  font-size: 0.8rem;
-  padding: 6px 10px;
-  border-radius: 20px;
-  background: #f2f2f2;
-  color: #333;
-  transition: 0.3s;
+.qr-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
 }
 
-.mca-badges a:hover {
-  background: var(--primary);
-  color: #fff;
-}
-/* ================= MOBILE FIX ================= */
-@media (max-width: 768px) {
-
-  .grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .program-card {
-    width: 100% !important;
-    min-height: auto;
-	  text-align: center;
-  }
-
+.qr-content img {
+  width: 220px;
+  margin-top: 15px;
 }
 
-/* Small phones */
-@media (max-width: 480px) {
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
 }
 
-
-  </style>
+/* FOOTER */
+footer {
+  background: var(--dark);
+  color: #ccc;
+  text-align: center;
+  padding: 18px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <div class="navbar">
     <div class="logos">
-      <img src="https://www.gjimt.ac.in/wp-content/uploads/2025/09/gjimt-logo.png" alt="GJIMT Logo">
-    
+      <img src="https://www.gjimt.ac.in/wp-content/uploads/2025/09/gjimt-logo.png">
     </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="programs.html">Programs</a>
-       <a href="contact.html">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
   <h1>AI & Industry Integrated Programs</h1>
   <p>Future-ready education with global certifications</p>
 </section>
 
-<!-- ================= PROGRAMS ================= -->
-<!-- ================= PROGRAMS ================= -->
 <section>
   <div class="container">
-
     <h2 class="section-title">Our Integrated Programs</h2>
 
     <div class="grid">
@@ -485,7 +233,7 @@
 
       <a href="BBA with AI Integration.html" class="program-card">
         <span>📊</span>
-        <h3 style=" text-align: center;">BBA with AI Integration</h3>
+        <h3>BBA with AI Integration</h3>
       </a>
 
       <a href="BCom(Hons) with AI Integration.html" class="program-card">
@@ -498,58 +246,57 @@
         <h3>MBA with AI Integration</h3>
       </a>
 
-      <!-- MCA Combined Card -->
-<div class="program-card mca-card">
-  <span>💻</span>
-  <h3>MCA – Industry Integrated</h3>
-
-  <div class="mca-badges">
-    <a href="MCA with AI Integration.html">AI Integration</a>
-    <a href="MCA with full stack.html">Full Stack</a>
-    <a href="MCA with IS.html">Information Security</a>
-  </div>
-</div>
-
+      <div class="program-card">
+        <span>💻</span>
+        <h3>MCA – Industry Integrated</h3>
+        <div class="mca-badges">
+          <a href="MCA with AI Integration.html">AI Integration</a>
+          <a href="MCA with full stack.html">Full Stack</a>
+          <a href="MCA with IS.html">Information Security</a>
+        </div>
+      </div>
 
     </div>
-
   </div>
 </section>
 
-
-<!-- ================= FOOTER ================= -->
 <footer>
-  © 2026 Gian Jyoti Institute of Management & Technology | All Rights Reserved
+  © 2026 Gian Jyoti Institute of Management & Technology
 </footer>
 
-<!-- ================= SCRIPT ================= -->
-<script>
-  const cards = document.querySelectorAll('.program-card');
+<!-- QR BUTTON -->
+<div class="qr-btn" onclick="openQR()">
+  📱 Scan for Admissions Info
+</div>
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  }, { threshold: 0.15 });
-
-  cards.forEach(card => observer.observe(card));
-	function openShadow(){
-  window.location.href = "Shadow Projects Course Selection Page.html";
-}
-</script>
+<!-- SHADOW BUTTON -->
 <div class="shadow-btn" onclick="openShadow()">
   🚀 Shadow Projects
 </div>
+
+<!-- QR MODAL -->
+<div id="qrModal" class="qr-modal">
+  <div class="qr-content">
+    <span class="close-btn" onclick="closeQR()">×</span>
+    <h3>Scan for Admissions Information</h3>
+    <img src="Untitled QR code.png">
+  </div>
+</div>
+
+<script>
+function openShadow(){
+  window.location.href = "Shadow Projects Course Selection Page.html";
+}
+
+function openQR(){
+  document.getElementById("qrModal").style.display = "flex";
+}
+
+function closeQR(){
+  document.getElementById("qrModal").style.display = "none";
+}
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
+```
