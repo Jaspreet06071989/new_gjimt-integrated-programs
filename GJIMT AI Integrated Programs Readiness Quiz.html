@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GJIMT AI Integrated Programs Suitability Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    :root{
+      --blue:#0A3663; --blue-dark:#072748; --gold:#D4AF37; --gold-dark:#b89322;
+      --bg:#f5f7fb; --surface:#ffffff; --surface-2:#f0f4f8; --text:#1f2937;
+      --muted:#5b6472; --border:#d9e1ea; --success:#2e7d32; --danger:#b42318;
+      --warn:#b26a00; --radius:18px; --shadow:0 10px 30px rgba(10,54,99,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:linear-gradient(180deg,#f8fbff 0,#f4f6fa 100%);
+      color:var(--text);
+    }
+    .wrap{max-width:900px;margin:0 auto;padding:18px}
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .hero{padding:28px 28px 18px}
+    h1{
+      margin:0 0 8px;
+      font:700 clamp(2rem,4vw,3rem) "Playfair Display",serif;
+      color:var(--blue);
+      text-align:center;
+    }
+    .sub{
+      text-align:center;
+      color:var(--muted);
+      font-size:1.02rem;
+      max-width:760px;
+      margin:0 auto;
+    }
+    .section{padding:22px 28px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .full{grid-column:1/-1}
+    .field label{
+      display:block;
+      font-size:.95rem;
+      font-weight:700;
+      margin:0 0 8px;
+      color:var(--text);
+    }
+    .field input,.field select{
+      width:100%;
+      min-height:48px;
+      padding:12px 14px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      font:inherit;
+      background:#fff;
+    }
+    .field input:focus,.field select:focus{
+      outline:none;
+      border-color:var(--blue);
+      box-shadow:0 0 0 4px rgba(10,54,99,.1);
+    }
+    .intro{
+      padding:18px 20px;
+      background:linear-gradient(135deg,rgba(10,54,99,.05),rgba(212,175,55,.09));
+      border:1px solid var(--border);
+      border-radius:14px;
+      margin-bottom:18px;
+    }
+    .intro h2{
+      margin:0 0 8px;
+      color:var(--blue);
+      font-size:1.18rem;
+    }
+    .muted{color:var(--muted)}
+    .cta-row{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius:12px;
+      padding:13px 18px;
+      font:700 1rem Inter,sans-serif;
+      cursor:pointer;
+      min-height:48px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .btn-primary{background:var(--blue);color:#fff}
+    .btn-primary:hover{background:var(--blue-dark)}
+    .btn-gold{background:var(--gold);color:#1b1b1b}
+    .btn-gold:hover{background:var(--gold-dark)}
+    .btn-outline{background:#fff;color:var(--blue);border:1px solid var(--border)}
+    .hidden{display:none!important}
+
+    .sticky-top{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(245,247,251,.95);
+      backdrop-filter:blur(8px);
+      padding-bottom:8px;
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      padding:8px 2px 0;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--border);
+      font-weight:700;
+      font-size:.92rem;
+    }
+    .timer.good{color:var(--blue)}
+    .timer.warn{color:var(--warn)}
+    .timer.danger{color:var(--danger)}
+    .progress-shell{margin-top:8px}
+    .progress{
+      height:10px;
+      background:#e7edf5;
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .progress div{
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,var(--gold),var(--blue));
+      transition:width .25s ease;
+    }
+    .progress-meta{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      color:var(--muted);
+      font-size:.92rem;
+      margin-top:8px;
+    }
+    .q-wrap{padding:18px 6px 0}
+    .section-label{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(10,54,99,.06);
+      color:var(--blue);
+      font-weight:800;
+      font-size:.84rem;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .q-card{
+      padding:22px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:#fff;
+    }
+    .q-title{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:16px;
+    }
+    .q-no{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      background:var(--blue);
+      color:#fff;
+      font-size:.95rem;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 34px;
+      margin-top:2px;
+    }
+    .q-text{
+      font-size:1.08rem;
+      font-weight:700;
+      line-height:1.55;
+    }
+    .scenario{
+      margin:0 0 14px 46px;
+      color:var(--muted);
+      font-size:.96rem;
+      line-height:1.55;
+    }
+    .opts{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .opt input{display:none}
+    .opt label{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      min-height:60px;
+      border:2px solid var(--border);
+      border-radius:14px;
+      background:var(--surface-2);
+      cursor:pointer;
+      font-weight:700;
+      transition:.2s ease;
+      padding:12px 14px;
+    }
+    .opt label:hover{border-color:var(--blue)}
+    .opt input:checked + label{
+      background:var(--blue);
+      color:#fff;
+      border-color:var(--blue);
+    }
+    .opt-key{
+      width:26px;
+      height:26px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--blue);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.82rem;
+      font-weight:800;
+      flex:0 0 26px;
+      margin-top:1px;
+    }
+    .opt input:checked + label .opt-key{
+      background:#fff;
+      color:var(--blue);
+    }
+    .nav-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .results-head{text-align:center;margin-bottom:18px}
+    .results-head h2{
+      margin:0 0 8px;
+      color:var(--blue);
+      font-size:2rem;
+    }
+    .badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--gold);
+      font-weight:800;
+      font-size:.82rem;
+      color:#231f10;
+      margin-top:8px;
+    }
+
+    .score-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      margin:18px 0;
+      background:#0A3663;
+      border-radius:18px;
+      padding:10px;
+    }
+    .mini{
+      padding:10px 8px;
+      border-radius:14px;
+      background:linear-gradient(135deg,rgba(15,52,102,.85),rgba(15,76,138,.95));
+      text-align:center;
+      color:#fff;
+    }
+    .mini-code{
+      font-size:.7rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+    .mini strong{
+      display:block;
+      font-size:1.1rem;
+      margin-top:2px;
+    }
+    .mini-label{
+      font-size:.7rem;
+      opacity:.9;
+      margin-top:2px;
+    }
+
+    .dim-list{display:grid;gap:12px}
+    .dim{
+      padding:14px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+    }
+    .dim h3{
+      margin:0 0 6px;
+      color:var(--blue);
+      font-size:1rem;
+    }
+    .tag{
+      display:inline-block;
+      margin-left:6px;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:.75rem;
+      font-weight:800;
+    }
+    .high{background:rgba(46,125,50,.12);color:#1b5e20}
+    .medium{background:rgba(178,106,0,.12);color:#8a5300}
+    .low{background:rgba(180,35,24,.12);color:#8c1f14}
+
+    .share-card{
+      margin-top:18px;
+      padding:22px;
+      border-radius:20px;
+      background:linear-gradient(135deg,#0A3663 0,#0f4c8a 70%,#D4AF37 160%);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .share-card:before{
+      content:"";
+      position:absolute;
+      inset:auto -40px -40px auto;
+      width:180px;
+      height:180px;
+      background:rgba(255,255,255,.08);
+      border-radius:999px;
+    }
+    .share-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .brand{font-weight:800;letter-spacing:.02em}
+    .share-card h3{margin:8px 0 6px;font-size:1.4rem}
+    .meta-line{opacity:.92;font-size:.95rem}
+    .score-row{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+      margin-top:16px;
+    }
+    .score-chip{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:14px;
+      padding:10px;
+      text-align:center;
+    }
+    .score-chip .k{font-size:.72rem;opacity:.86}
+    .score-chip .v{font-weight:800;font-size:1.1rem;margin-top:3px}
+    .small-note{margin-top:12px;font-size:.86rem;opacity:.9}
+
+    .no-print{}
+
+    @media (max-width:760px){
+      .wrap{padding:14px}
+      .grid,.opts,.score-grid,.score-row{grid-template-columns:1fr}
+      .hero,.section{padding:18px}
+      .q-card{padding:18px}
+      .scenario{margin-left:0}
+      .topbar,.nav-row,.share-top{flex-direction:column;align-items:stretch}
+    }
+    @media print {
+      .no-print,.sticky-top{display:none!important}
+      body{background:#fff}
+      .card{box-shadow:none;border:none}
+      .share-card,.dim{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- REGISTRATION -->
+    <div id="registration" class="card">
+      <div class="hero">
+        <h1>AI Integrated Programs Suitability Quiz</h1>
+        <div class="sub">
+          Please enter your details so that the result can be shared with the admissions and AI Lab team. This is not a rejection test; it helps place the student at the right starting point.
+        </div>
+      </div>
+      <div class="section">
+        <div class="intro">
+          <h2>How this works</h2>
+          <div class="muted">
+            You will answer one question at a time. The quiz is section-wise, timed, and uses a balanced random selection from a larger question pool each time.
+          </div>
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name">
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp Number</label>
+            <input id="phone">
+          </div>
+          <div class="field">
+            <label for="program">Chosen Program</label>
+            <select id="program">
+              <option value="">Select Program</option>
+              <option value="BCA_AI">BCA with AI Integration</option>
+              <option value="BBA_AI">BBA with AI Integration</option>
+              <option value="BCOM_AI">BCom(Hons) with AI Integration</option>
+              <option value="MCA_AI">MCA with AI Integration</option>
+              <option value="MBA_AI">MBA with AI Integration</option>
+            </select>
+          </div>
+
+          <!-- UG-only -->
+          <div class="field ug-only hidden">
+            <label for="board">Class 12th Board</label>
+            <select id="board">
+              <option value="">Select Board</option>
+              <option>CBSE</option>
+              <option>PSEB</option>
+              <option>ICSE</option>
+              <option>Other State Board</option>
+            </select>
+          </div>
+          <div class="field ug-only hidden">
+            <label for="stream">Class 12th Stream</label>
+            <select id="stream">
+              <option value="">Select Stream</option>
+              <option>Commerce</option>
+              <option>Non-Medical</option>
+              <option>Medical</option>
+              <option>Arts</option>
+              <option>Vocational</option>
+            </select>
+          </div>
+
+          <!-- PG-only -->
+          <div class="field grad-only hidden full">
+            <label for="gradStream">Graduation Stream / Background</label>
+            <select id="gradStream">
+              <option value="">Select Graduation Stream</option>
+              <option>Commerce (BCom, BCom(H))</option>
+              <option>Management / BBA / BBM</option>
+              <option>Computer Applications / BCA</option>
+              <option>Engineering / BTech / BE</option>
+              <option>Science (Non-Medical)</option>
+              <option>Science (Medical)</option>
+              <option>Arts / Humanities</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="cta-row">
+          <button class="btn btn-primary" id="startBtn">Start the Quiz</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quizScreen" class="hidden">
+      <div class="sticky-top no-print">
+        <div class="topbar">
+          <div class="pill" id="programPill">Program</div>
+          <div class="pill timer good" id="timerPill">20:00</div>
+        </div>
+        <div class="progress-shell">
+          <div class="progress"><div id="bar"></div></div>
+          <div class="progress-meta">
+            <span id="sectionLabelTop">Section</span>
+            <span>Question <span id="qIndex">1</span> / <span id="qTotal">18</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="card section q-wrap">
+        <div class="section-label" id="sectionLabel">Section 1</div>
+        <div class="q-card">
+          <div class="q-title">
+            <div class="q-no" id="qNo">1</div>
+            <div class="q-text" id="qText"></div>
+          </div>
+          <div class="scenario hidden" id="qScenario"></div>
+          <div class="opts" id="qOptions"></div>
+          <div class="nav-row no-print">
+            <button class="btn btn-outline" id="prevBtn">Previous</button>
+            <button class="btn btn-primary" id="nextBtn" disabled>Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="resultScreen" class="hidden">
+      <div class="card section">
+        <div class="results-head">
+          <h2>Your Suitability Profile</h2>
+          <div class="muted">
+            Prepared for <strong id="studentNameOut"></strong>
+          </div>
+          <div class="badge" id="overallBand"></div>
+          <div class="muted" style="margin-top:8px" id="overallNote"></div>
+        </div>
+
+        <div class="score-grid" id="miniScores"></div>
+        <div class="dim-list" id="dimList"></div>
+
+        <div id="shareCard" class="share-card">
+          <div class="share-top">
+            <div>
+              <div class="brand">GJIMT AI Integrated Programs</div>
+              <h3 id="shareBand">Suitable</h3>
+              <div class="meta-line" id="shareMeta"></div>
+            </div>
+            <div class="brand" id="shareScore">00/100</div>
+          </div>
+          <div class="score-row" id="shareScores"></div>
+          <div class="small-note">
+            Advisory result for admission counselling. Final decision remains with GJIMT admissions and AI Lab team.
+          </div>
+        </div>
+
+        <div class="cta-row no-print">
+          <button class="btn btn-gold" id="downloadCardBtn">Download Result Card</button>
+          <button class="btn btn-outline" id="copyTextBtn">Copy WhatsApp Summary</button>
+          <button class="btn btn-outline" onclick="window.print()">Print</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PROGRAM_TYPES={BCA_AI:'UG',BBA_AI:'UG',BCOM_AI:'UG',MCA_AI:'PG',MBA_AI:'PG'};
+    const DIMS={
+      D1:'Foundations & Program Fit',
+      D2:'AI & Tool Readiness',
+      D3:'Projects & Applied Learning',
+      D4:'Self-Study & Certification Discipline',
+      D5:'Motivation, Ethics & Time'
+    };
+    const WEIGHTS={D1:.28,D2:.18,D3:.22,D4:.14,D5:.18};
+    const TOTAL_TIME=20*60;
+
+    const explanations={
+      default:{
+        D1:{
+          high:'Strong base for the chosen program. The student shows good reasoning ability and comfort with the core academic demands.',
+          medium:'Basic fit is visible, but a few areas may need mentoring or bridge support.',
+          low:'Current fit with the chosen program fundamentals appears weak. Counselling and a foundation route may be more suitable.'
+        },
+        D2:{
+          high:'The student appears open to learning AI tools in a structured and responsible manner.',
+          medium:'There is some openness to AI tools, but confidence or clarity may still be developing.',
+          low:'The student may currently be hesitant, passive, or unclear about AI-assisted learning workflows.'
+        },
+        D3:{
+          high:'The student seems ready for benchmarked shadow projects, case-based work, and applied tasks.',
+          medium:'The student can attempt applied work but may need more guidance in open-ended tasks.',
+          low:'The student may struggle with project-based, benchmarked, or practical implementation work without strong support.'
+        },
+        D4:{
+          high:'Good discipline for self-study, mock tests, and certification preparation is visible.',
+          medium:'Some discipline is visible, but consistency may be an issue.',
+          low:'The student may find it difficult to maintain the consistency needed for certifications and mock-test preparation.'
+        },
+        D5:{
+          high:'The student appears motivated, realistic, and ethically aligned with AI-integrated learning.',
+          medium:'Interest is visible, but motivation, time commitment, or ethical clarity may need reinforcement.',
+          low:'The student may not yet have the motivation, ethical clarity, or time commitment needed for this pathway.'
+        }
+      }
+    };
+
+    function makeQ(id,section,dim,text,options,scenario='',correct=null){
+      return {id,section,dim,text,options,scenario,correct};
+    }
+
+    const programQuestions={};
+
+    /* MBA, MCA, BCA, BBA, BCOM POOLS OMITTED HERE FOR BREVITY IN THIS MESSAGE.
+       You would paste the full 50-question arrays for each, exactly as we were building,
+       using makeQ(..., correctIndex) for keyed questions and correct=null for Likert ones. */
+
+    /* For demo / to ensure the page runs, we attach small placeholder pools.
+       Replace these with your full pools from our drafts. */
+    programQuestions.MBA_AI=[
+  // D1 – Foundations & Program Fit
+  makeQ('mba1','Section 1 – Foundations & Program Fit','D1',
+    'A café increases monthly sales from ₹4 lakh to ₹5 lakh while profit stays the same. What is the most likely explanation?',
+    ['Costs rose and offset the sales growth',
+     'Customer footfall definitely fell',
+     'The accounting records are automatically wrong',
+     'The business has no fixed costs'],
+    'Business data shows revenue went up but profit did not.',
+    0
+  ),
+  makeQ('mba2','Section 1 – Foundations & Program Fit','D1',
+    'A company sells Product A at ₹500 with variable cost ₹300, and Product B at ₹700 with variable cost ₹450. Which product contributes more per unit?',
+    ['Product A',
+     'Product B',
+     'Both are equal',
+     'Cannot be judged'],
+    'Contribution per unit = Selling price minus variable cost.',
+    1
+  ),
+  makeQ('mba3','Section 1 – Foundations & Program Fit','D1',
+    'A manager has data from 4 city branches. Which is the best first step before recommending expansion?',
+    ['Compare revenue, cost, and repeat-customer trends together',
+     'Check which branch has the highest revenue only',
+     'Expand to all cities equally',
+     'Ignore data and use instinct'],
+    'The manager wants a sound recommendation, not a guess.',
+    0
+  ),
+  makeQ('mba4','Section 1 – Foundations & Program Fit','D1',
+    'If employee productivity improves by 10% while labour cost remains unchanged, what does it most likely improve first?',
+    ['Contribution margin or output efficiency',
+     'Only fixed assets value',
+     'Only tax outflow',
+     'Nothing changes'],
+    'Think managerially about productivity and cost.',
+    0
+  ),
+  makeQ('mba5','Section 1 – Foundations & Program Fit','D1',
+    'A dashboard shows sales up 8%, customer complaints up 20%, and repeat purchases down 6%. What is the best managerial conclusion?',
+    ['There may be service-quality issues despite higher sales',
+     'Growth is healthy in every way',
+     'The data should be ignored because indicators conflict',
+     'Complaints always mean pricing should be cut'],
+    'Good managers read connected indicators, not a single number.',
+    0
+  ),
+  makeQ('mba6','Section 1 – Foundations & Program Fit','D1',
+    'You are given a KPI dashboard with revenue, customer count, margin, and churn. Which metric combination is most useful for judging growth quality?',
+    ['Revenue, margin, and churn together',
+     'Revenue only',
+     'Revenue and office rent',
+     'Customer count only'],
+    'A business wants sustainable growth, not surface-level growth.',
+    0
+  ),
+  makeQ('mba7','Section 1 – Foundations & Program Fit','D1',
+    'If a business reduces selling price by 5% and unit sales rise by 2%, what should a manager check before calling it a success?',
+    ['Profitability and contribution impact',
+     'Only social media comments',
+     'The colour of the packaging',
+     'Whether competitors noticed'],
+    'Top-line growth alone is not enough.',
+    0
+  ),
+  makeQ('mba8','Section 1 – Foundations & Program Fit','D1',
+    'I enjoy analysing short caselets involving pricing, costs, customers, or operations.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba9','Section 1 – Foundations & Program Fit','D1',
+    'I can stay engaged with business data even if a question takes two or three steps of reasoning.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba10','Section 1 – Foundations & Program Fit','D1',
+    'A team has limited budget. Which project should be prioritised first?',
+    ['The one most aligned to measurable business impact',
+     'The one with the highest decoration value',
+     'The one that looks easiest on paper only',
+     'The one chosen randomly'],
+    'A manager has to allocate limited resources.',
+    0
+  ),
+  makeQ('mba11','Section 1 – Foundations & Program Fit','D1',
+    'I am comfortable reading basic tables and charts to support decisions.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba12','Section 1 – Foundations & Program Fit','D1',
+    'I am willing to practise quantitative techniques if they help me make better management decisions.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba13','Section 1 – Foundations & Program Fit','D1',
+    'I like to understand the logic behind business decisions instead of only memorising theory.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba14','Section 1 – Foundations & Program Fit','D1',
+    'I feel confident that with guidance, I can handle a rigorous MBA curriculum with quantitative subjects.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D2 – AI & Tool Readiness
+  makeQ('mba15','Section 2 – AI & Tool Readiness','D2',
+    'You need to prepare a first draft of a market-entry note. What is the best use of AI?',
+    ['Use AI to generate structure, then validate facts and refine reasoning yourself',
+     'Ask AI to write everything and submit it unchanged',
+     'Avoid AI completely even for brainstorming',
+     'Copy a competitor report and ask AI to paraphrase it'],
+    'Think of AI as managerial support, not a shortcut.',
+    0
+  ),
+  makeQ('mba16','Section 2 – AI & Tool Readiness','D2',
+    'A student uses ChatGPT to suggest customer segments, then checks them against real data in Excel. This is:',
+    ['A strong learning approach',
+     'A waste of time',
+     'Unethical by default',
+     'Only useful in coding, not management'],
+    'The task is about responsible AI use.',
+    0
+  ),
+  makeQ('mba17','Section 2 – AI & Tool Readiness','D2',
+    'I am comfortable experimenting with new digital tools even if I do not understand everything at first.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba18','Section 2 – AI & Tool Readiness','D2',
+    'Which use of AI shows the best managerial judgment?',
+    ['Using AI for idea generation, then validating with data and context',
+     'Using AI output without checking sources',
+     'Using AI only for fancy wording',
+     'Using AI mainly to avoid reading'],
+    'Responsible managerial thinking matters.',
+    0
+  ),
+  makeQ('mba19','Section 2 – AI & Tool Readiness','D2',
+    'I would like to learn how tools like ChatGPT, Excel AI, Power BI, or presentation AI tools can improve my work.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba20','Section 2 – AI & Tool Readiness','D2',
+    'A manager gets two AI-generated summaries of the same issue. What should they do first?',
+    ['Compare both with actual data or source material',
+     'Choose the longer one',
+     'Send both to the board immediately',
+     'Average the wording'],
+    'Good managers validate before acting.',
+    0
+  ),
+  makeQ('mba21','Section 2 – AI & Tool Readiness','D2',
+    'I see AI as a tool to improve my thinking and efficiency, not as a way to avoid effort.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba22','Section 2 – AI & Tool Readiness','D2',
+    'A team wants to use AI for customer feedback analysis. Which is the best approach?',
+    ['First check data sensitivity, then analyse themes responsibly',
+     'Upload anything without checking privacy issues',
+     'Skip analysis because AI is risky',
+     'Let AI reply directly to all customers without human review'],
+    'AI use must be useful and responsible.',
+    0
+  ),
+  makeQ('mba23','Section 2 – AI & Tool Readiness','D2',
+    'I am willing to invest time every week to become comfortable with AI tools used in the program.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba24','Section 2 – AI & Tool Readiness','D2',
+    'Which student is most likely to benefit from an AI-integrated MBA?',
+    ['One who wants to combine AI tools with business reasoning and practice',
+     'One who wants AI to do all assignments',
+     'One who avoids feedback completely',
+     'One who dislikes learning new tools'],
+    'Readiness depends on attitude, not hype.',
+    0
+  ),
+
+  // D3 – Projects & Applied Learning
+  makeQ('mba25','Section 3 – Projects & Applied Learning','D3',
+    'For a Zomato/Swiggy-style customer journey project, what is the best first move?',
+    ['Map the full journey and identify friction points from evidence',
+     'Write final recommendations immediately',
+     'Focus only on app colours',
+     'Avoid customer pain points because they are negative'],
+    'Projects start with structured diagnosis.',
+    0
+  ),
+  makeQ('mba26','Section 3 – Projects & Applied Learning','D3',
+    'You are asked to benchmark Amazon and Flipkart on delivery promise and customer value. What would strengthen your analysis most?',
+    ['Comparing measurable factors and documenting logic clearly',
+     'Using only one advertisement from each company',
+     'Choosing the brand you personally like more',
+     'Ignoring customer value and focusing only on logos'],
+    'Benchmarking should be evidence-based.',
+    0
+  ),
+  makeQ('mba27','Section 3 – Projects & Applied Learning','D3',
+    'I am comfortable with project tasks where there may not be one perfect answer, but I must justify my recommendation.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba28','Section 3 – Projects & Applied Learning','D3',
+    'For a market-entry snapshot benchmarked to Netflix/Jio, which is the best combination?',
+    ['Pricing, competitor presence, and customer segment logic',
+     'Only city population',
+     'Only a slogan and poster idea',
+     'Only what friends prefer'],
+    'Applied business work needs multiple indicators.',
+    0
+  ),
+  makeQ('mba29','Section 3 – Projects & Applied Learning','D3',
+    'A team receives faculty feedback that its dashboard is visually good but analytically weak. Best response?',
+    ['Improve the analysis and keep the visuals aligned to the insight',
+     'Defend the work and make no changes',
+     'Remove all visuals',
+     'Submit late to avoid revision'],
+    'Feedback is part of project maturity.',
+    0
+  ),
+  makeQ('mba30','Section 3 – Projects & Applied Learning','D3',
+    'I would enjoy working on benchmarked shadow projects based on real companies and presenting the results.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba31','Section 3 – Projects & Applied Learning','D3',
+    'For a business diagnostic study, what adds the most value?',
+    ['Structuring root causes and linking them to data',
+     'Listing random problems',
+     'Using difficult jargon',
+     'Avoiding numbers completely'],
+    'Managers need diagnosis, not noise.',
+    0
+  ),
+  makeQ('mba32','Section 3 – Projects & Applied Learning','D3',
+    'When working in a team project, I am willing to contribute even if the task is messy at the beginning.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba33','Section 3 – Projects & Applied Learning','D3',
+    'A capstone asks for three strategic recommendations with risks and KPIs. What makes a recommendation strongest?',
+    ['It is actionable, measurable, and linked to analysis',
+     'It sounds very confident',
+     'It uses many buzzwords',
+     'It is copied from a known company'],
+    'Good strategy needs action and measurement.',
+    0
+  ),
+  makeQ('mba34','Section 3 – Projects & Applied Learning','D3',
+    'I am ready to present my analysis to faculty or a panel even if I feel slightly nervous.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D4 – Self-Study & Certification Discipline
+  makeQ('mba35','Section 4 – Self-Study & Certification Discipline','D4',
+    'You have a certification mock test in 10 days and a project submission in 12 days. What is the strongest plan?',
+    ['Make a short daily schedule and progress on both steadily',
+     'Ignore the mock test until the last day',
+     'Work only on whichever feels easier',
+     'Wait for pressure to build'],
+    'Consistency matters in integrated programs.',
+    0
+  ),
+  makeQ('mba36','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can set aside fixed weekly hours for self-study beyond classroom teaching.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba37','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student scores poorly in the first mock test. What is the best response?',
+    ['Review mistakes, adjust study method, and try again',
+     'Assume the final certification is impossible',
+     'Blame the platform only',
+     'Stop attempting mocks'],
+    'Improvement mindset matters.',
+    0
+  ),
+  makeQ('mba38','Section 4 – Self-Study & Certification Discipline','D4',
+    'I am willing to learn from online videos, notes, and practice tests on my own when needed.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba39','Section 4 – Self-Study & Certification Discipline','D4',
+    'Which student is most likely to clear embedded certifications?',
+    ['The one who practises regularly in smaller chunks',
+     'The one who studies only a day before the exam',
+     'The one who avoids mock tests',
+     'The one who waits for others to explain everything'],
+    'Global-standard preparation needs rhythm.',
+    0
+  ),
+  makeQ('mba40','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can continue a study routine even when there is no immediate test the next day.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba41','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I do not understand a concept in one attempt, I am willing to revisit it instead of skipping it.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba42','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student has good interest but weak consistency. What is the biggest likely risk in an AI-integrated program?',
+    ['Difficulty keeping up with certifications and project timelines',
+     'Nothing important',
+     'Too much creativity',
+     'Too much class participation'],
+    'This checks insight into discipline requirements.',
+    0
+  ),
+
+  // D5 – Motivation, Ethics & Time
+  makeQ('mba43','Section 5 – Motivation, Ethics & Time','D5',
+    'Why is an AI-integrated MBA different from choosing AI just because it is trending?',
+    ['It expects meaningful application and responsible use',
+     'It only changes the title of the degree',
+     'It removes the need for hard work',
+     'It guarantees job placement automatically'],
+    'Motivation should be grounded in purpose.',
+    0
+  ),
+  makeQ('mba44','Section 5 – Motivation, Ethics & Time','D5',
+    'I have thought about how AI can support the career area I am most interested in.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba45','Section 5 – Motivation, Ethics & Time','D5',
+    'A student uses AI to generate an assignment and submits it without checking facts or references. This is:',
+    ['Risky and academically weak',
+     'Efficient and acceptable',
+     'Best practice in modern MBA',
+     'Only a minor issue'],
+    'Ethics and responsibility matter.',
+    0
+  ),
+  makeQ('mba46','Section 5 – Motivation, Ethics & Time','D5',
+    'I am willing to spend a few hours every week practising with AI tools and improving my workflow.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba47','Section 5 – Motivation, Ethics & Time','D5',
+    'Which student appears most ready for an AI-integrated MBA?',
+    ['One who is curious, disciplined, and open to feedback',
+     'One looking for shortcuts',
+     'One who dislikes projects',
+     'One who only wants the label'],
+    'Program fit includes mindset.',
+    0
+  ),
+  makeQ('mba48','Section 5 – Motivation, Ethics & Time','D5',
+    'I see AI as an assistant to support my thinking, not as a replacement for learning.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mba49','Section 5 – Motivation, Ethics & Time','D5',
+    'A realistic commitment for success in an AI-integrated program is usually:',
+    ['Regular weekly effort beyond class',
+     'Only class attendance is enough',
+     'No need for practice after semester starts',
+     'Last-minute effort before exams'],
+    'Time commitment matters.',
+    0
+  ),
+  makeQ('mba50','Section 5 – Motivation, Ethics & Time','D5',
+    'I am choosing this kind of program after thinking about my long-term goals, not just the current buzz around AI.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  )
+];
+explanations.MBA_AI = explanations.default;
+programQuestions.MCA_AI=[
+  // D1 – Foundations & Program Fit
+  makeQ('mca1','Section 1 – Foundations & Program Fit','D1',
+    'A function loops through an array of 10,000 records and is slow. Which change is most likely to improve performance first?',
+    ['Review algorithm to reduce unnecessary work before thinking of faster hardware',
+     'Immediately buy a more powerful server',
+     'Add more print statements to the loop permanently',
+     'Ignore it if it eventually finishes'],
+    'Focus is on algorithmic efficiency, not hardware first.',
+    0
+  ),
+  makeQ('mca2','Section 1 – Foundations & Program Fit','D1',
+    'A student writes a loop that processes an empty array and gets an error. What is the best first step?',
+    ['Check boundary conditions and handle empty array case',
+     'Blame the compiler',
+     'Increase the RAM',
+     'Disable error messages'],
+    'Robust code checks input conditions.',
+    0
+  ),
+  makeQ('mca3','Section 1 – Foundations & Program Fit','D1',
+    'A program reads a list of students and calculates average marks. For some inputs the average is wrong. Which is the most logical starting point?',
+    ['Print intermediate totals and verify with a small test list',
+     'Change the variable names to longer ones',
+     'Rewrite the full program in another language',
+     'Assume the data is always wrong'],
+    'Debugging starts with controlled tests and tracing.',
+    0
+  ),
+  makeQ('mca4','Section 1 – Foundations & Program Fit','D1',
+    'In an application, you have to choose a data structure for fast lookups by a unique key. Which is usually a better fit?',
+    ['Hash-map or dictionary',
+     'Array scanned from start to end every time',
+     'Unordered text file',
+     'A random queue'],
+    'Basic data-structure reasoning.',
+    0
+  ),
+  makeQ('mca5','Section 1 – Foundations & Program Fit','D1',
+    'You need to count how many records satisfy a condition in an array. What is the simplest correct approach?',
+    ['Loop through the array and increment a counter for each matching element',
+     'Sort the array and then ignore the condition',
+     'Create a new database for counting only',
+     'Change the condition every time the loop runs'],
+    'Basic loop logic for counting.',
+    0
+  ),
+  makeQ('mca6','Section 1 – Foundations & Program Fit','D1',
+    'A function is supposed to return the smallest value in an array. Which is the most reliable high-level approach?',
+    ['Assume the first value is smallest and update it while scanning',
+     'Pick a random value and hope it is smallest',
+     'Always return the last value',
+     'Return zero for safety'],
+    'Core algorithm reasoning.',
+    0
+  ),
+  makeQ('mca7','Section 1 – Foundations & Program Fit','D1',
+    'I am comfortable thinking in terms of arrays, loops, and conditions when solving problems.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca8','Section 1 – Foundations & Program Fit','D1',
+    'A program works correctly for 10 records but fails for 10,000 records. What does this most likely indicate?',
+    ['There may be a time or memory complexity issue',
+     'The language is not suitable and must be changed',
+     'The compiler is broken',
+     'The network is always the problem'],
+    'Scalability thinking.',
+    0
+  ),
+  makeQ('mca9','Section 1 – Foundations & Program Fit','D1',
+    'A database table has 2,00,000 rows. For frequent simple lookups on a column, what is the best first idea?',
+    ['Create an index on that column after analysing impact',
+     'Duplicate the table',
+     'Delete older data randomly',
+     'Change the DBMS immediately'],
+    'Relates to basic DB optimisation.',
+    0
+  ),
+  makeQ('mca10','Section 1 – Foundations & Program Fit','D1',
+    'I enjoy tracing short pseudo-code snippets in my head or on paper to work out what they do.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca11','Section 1 – Foundations & Program Fit','D1',
+    'Two functions solve the same task. One uses nested loops, the other uses a single loop with arithmetic logic. Which is often better for large inputs?',
+    ['The single-loop version, if the logic is correct',
+     'Always the nested loop',
+     'Whichever has more lines of code',
+     'Any version; performance is never important'],
+    'Efficiency focus.',
+    0
+  ),
+  makeQ('mca12','Section 1 – Foundations & Program Fit','D1',
+    'A software requirement has many edge cases. What is the best engineering attitude?',
+    ['Think through and test edge cases, not just the main flow',
+     'Ignore edge cases unless the client complains',
+     'Write code only for sample data',
+     'Wait for someone else to design the cases'],
+    'Professionalism in design.',
+    0
+  ),
+  makeQ('mca13','Section 1 – Foundations & Program Fit','D1',
+    'I can stay focused on a debugging problem even if it takes multiple attempts to find the root cause.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca14','Section 1 – Foundations & Program Fit','D1',
+    'When I read about algorithm time complexity (like O(n) or O(n²)), I am at least curious to understand the basic idea.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D2 – AI & Tool Readiness
+  makeQ('mca15','Section 2 – AI & Tool Readiness','D2',
+    'You have to refactor a long function. What is the best way to use an AI coding assistant?',
+    ['Ask AI for suggestions, then review, test, and simplify manually',
+     'Ask AI to rewrite everything and push directly to production',
+     'Paste only error messages and ignore the rest',
+     'Avoid reading any of the existing code'],
+    'Emphasises human review.',
+    0
+  ),
+  makeQ('mca16','Section 2 – AI & Tool Readiness','D2',
+    'A student uses AI to generate sample test cases for a function and then adds more edge cases by thinking independently. This is:',
+    ['A strong testing approach',
+     'Always unsafe',
+     'Completely unnecessary',
+     'A replacement for all documentation'],
+    'AI plus own thinking.',
+    0
+  ),
+  makeQ('mca17','Section 2 – AI & Tool Readiness','D2',
+    'I am willing to learn how to use AI tools for code explanation, debugging, and documentation.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca18','Section 2 – AI & Tool Readiness','D2',
+    'Which use of AI for coding shows the best professional behaviour?',
+    ['Using AI to propose code, then reviewing, testing, and documenting properly',
+     'Using AI-generated code without reading it',
+     'Using AI only to copy-paste from online forums',
+     'Using AI to hide poor coding habits'],
+    'Checks responsible use.',
+    0
+  ),
+  makeQ('mca19','Section 2 – AI & Tool Readiness','D2',
+    'You are stuck understanding a recursive function. What is the best sequence?',
+    ['Use AI to explain the logic with small examples, then trace it yourself',
+     'Immediately delete the function',
+     'Memorise the output only',
+     'Ignore recursion topics entirely'],
+    'AI as explainer, not shortcut.',
+    0
+  ),
+  makeQ('mca20','Section 2 – AI & Tool Readiness','D2',
+    'I am comfortable trying a new development tool or IDE even if I have to learn it step by step.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca21','Section 2 – AI & Tool Readiness','D2',
+    'A team wants to use AI to generate boilerplate code for a backend service. What is the most important next step after generation?',
+    ['Run tests, code review, and security checks before merging',
+     'Merge everything without checks',
+     'Rely only on AI for future changes',
+     'Delete all comments'],
+    'Coding hygiene.',
+    0
+  ),
+  makeQ('mca22','Section 2 – AI & Tool Readiness','D2',
+    'I see AI as a coding partner that still requires my logic, testing, and responsibility.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca23','Section 2 – AI & Tool Readiness','D2',
+    'An AI assistant suggests a query that seems efficient but uses unclear joins. What should you do?',
+    ['Check correctness and readability, then improve or document it',
+     'Use it blindly because it runs quickly once',
+     'Avoid any SQL just because AI suggested it',
+     'Leave unclear code for future developers'],
+    'Balance performance and clarity.',
+    0
+  ),
+  makeQ('mca24','Section 2 – AI & Tool Readiness','D2',
+    'Which student is most likely to grow in an AI-integrated MCA?',
+    ['One who uses AI suggestions as a starting point and builds strong logic and testing on top',
+     'One who wants AI to write full assignments',
+     'One who avoids any new tools',
+     'One who never documents code'],
+    'Attitude toward tools.',
+    0
+  ),
+
+  // D3 – Projects & Applied Learning
+  makeQ('mca25','Section 3 – Projects & Applied Learning','D3',
+    'An application works on your machine but fails when deployed to a server. What is the best first step?',
+    ['Check environment differences (config, versions, variables) and logs',
+     'Assume the server is always wrong',
+     'Immediately rewrite the app in another language',
+     'Ignore logs and restart repeatedly'],
+    'Deployment reasoning.',
+    0
+  ),
+  makeQ('mca26','Section 3 – Projects & Applied Learning','D3',
+    'A log file shows an error only when two users save data at the same time. What kind of problem is this most likely?',
+    ['Concurrency or race-condition issue',
+     'Simple spelling mistake',
+     'Network cable length problem',
+     'Always a virus'],
+    'Recognising concurrency.',
+    0
+  ),
+  makeQ('mca27','Section 3 – Projects & Applied Learning','D3',
+    'You are part of a team building a feature. What is the most professional habit?',
+    ['Committing small, tested changes with clear messages',
+     'Committing large untested changes at the deadline',
+     'Never pulling latest code',
+     'Avoiding code reviews'],
+    'Version-control discipline.',
+    0
+  ),
+  makeQ('mca28','Section 3 – Projects & Applied Learning','D3',
+    'A client reports that an API sometimes returns 500 errors under peak traffic. Which debugging step is most helpful first?',
+    ['Reproduce the load in a test environment and inspect logs/metrics',
+     'Change the logo of the website',
+     'Disable logging to save space',
+     'Ignore as long as it works sometimes'],
+    'Incident-handling mindset.',
+    0
+  ),
+  makeQ('mca29','Section 3 – Projects & Applied Learning','D3',
+    'I am comfortable reading error logs and stack traces to locate potential issues.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca30','Section 3 – Projects & Applied Learning','D3',
+    'When designing a new module, what adds the most value?',
+    ['Creating a simple diagram or description of main components and flows',
+     'Jumping directly into coding with no plan',
+     'Copying code without understanding',
+     'Relying only on trial-and-error'],
+    'System design thinking.',
+    0
+  ),
+  makeQ('mca31','Section 3 – Projects & Applied Learning','D3',
+    'A project requirement is ambiguous. Best first step?',
+    ['Clarify requirement with stakeholder or mentor and document it',
+     'Start coding based on guesswork',
+     'Ignore unclear parts and hope they are dropped',
+     'Wait until exam time'],
+    'Requirements discipline.',
+    0
+  ),
+  makeQ('mca32','Section 3 – Projects & Applied Learning','D3',
+    'I am willing to work on multi-week projects where the final system evolves through iterations and feedback.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca33','Section 3 – Projects & Applied Learning','D3',
+    'Two teammates propose different designs for the same feature. What is the best way forward?',
+    ['Compare trade-offs (complexity, performance, readability) and decide together',
+     'Choose randomly',
+     'Pick the design from the louder person',
+     'Avoid making a choice'],
+    'Engineering trade-offs.',
+    0
+  ),
+  makeQ('mca34','Section 3 – Projects & Applied Learning','D3',
+    'I am ready to present my code decisions and architecture choices to a panel even if I feel slightly nervous.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D4 – Self-Study & Certification Discipline
+  makeQ('mca35','Section 4 – Self-Study & Certification Discipline','D4',
+    'You have to learn data structures and also prepare for a cloud basics certification in the same semester. Which approach is strongest?',
+    ['Allocate weekly slots to both topics and adjust based on progress',
+     'Study only data structures and ignore certification fully',
+     'Join all groups but do no self-study',
+     'Wait for last week to start everything'],
+    'Balancing multiple learning goals.',
+    0
+  ),
+  makeQ('mca36','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can maintain a weekly self-study routine for new technologies or tools beyond classroom hours.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca37','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student repeatedly fails practice questions on recursion. What is the best response?',
+    ['Revisit basics, practise smaller problems, and seek help if needed',
+     'Give up on recursion completely',
+     'Blame the language only',
+     'Only memorise final answers'],
+    'Persistence in learning.',
+    0
+  ),
+  makeQ('mca38','Section 4 – Self-Study & Certification Discipline','D4',
+    'I am comfortable learning from documentation, tutorials, and online labs when needed.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca39','Section 4 – Self-Study & Certification Discipline','D4',
+    'Which student is more likely to clear embedded certifications in an MCA?',
+    ['One who practices regularly with mock tests and labs',
+     'One who only attends classes but never practises',
+     'One who ignores exam patterns',
+     'One who depends only on others\' notes'],
+    'Certification-oriented discipline.',
+    0
+  ),
+  makeQ('mca40','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can continue a practice routine even when there is no assignment due next day.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca41','Section 4 – Self-Study & Certification Discipline','D4',
+    'If a concept is initially confusing (e.g., pointers or multithreading), what is the most professional response?',
+    ['Break it into smaller parts, use examples, and keep revisiting',
+     'Avoid such concepts completely',
+     'Memorise code without understanding',
+     'Wait until an exam forces you'],
+    'Engineers revisit tough topics.',
+    0
+  ),
+  makeQ('mca42','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student has strong interest but weak consistency. In an MCA with AI, the biggest risk is:',
+    ['Difficulty keeping pace with projects, labs, and certifications',
+     'Too much free time',
+     'Too many doubts asked in class',
+     'Too many tools learnt'],
+    'Linking interest and discipline.',
+    0
+  ),
+
+  // D5 – Motivation, Ethics & Time
+  makeQ('mca43','Section 5 – Motivation, Ethics & Time','D5',
+    'Why is an AI-integrated MCA different from just using AI tools informally?',
+    ['It expects structured, ethical, and test-driven use of AI within proper computing foundations',
+     'It only changes the degree name',
+     'It removes the need for coding or logic',
+     'It guarantees job placement automatically'],
+    'Program philosophy.',
+    0
+  ),
+  makeQ('mca44','Section 5 – Motivation, Ethics & Time','D5',
+    'I have thought about how AI-assisted coding and analytics can support the kind of software/IT role I want in future.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca45','Section 5 – Motivation, Ethics & Time','D5',
+    'A student uses AI to generate large parts of code and submits without tests or understanding. This is:',
+    ['Risky, unprofessional, and academically weak',
+     'Efficient and always acceptable',
+     'Best practice for all projects',
+     'Only a minor issue'],
+    'Ethics and quality.',
+    0
+  ),
+  makeQ('mca46','Section 5 – Motivation, Ethics & Time','D5',
+    'I am willing to spend a few hours every week practising with AI coding tools, debugging problems, and improving my workflow.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca47','Section 5 – Motivation, Ethics & Time','D5',
+    'Which student appears most ready for an AI-integrated MCA?',
+    ['One who wants to combine strong logic, disciplined practice, and responsible AI use',
+     'One who wants AI to avoid all coding',
+     'One who dislikes debugging',
+     'One who never reads documentation'],
+    'Mindset fit.',
+    0
+  ),
+  makeQ('mca48','Section 5 – Motivation, Ethics & Time','D5',
+    'A realistic weekly commitment for success in MCA with AI is usually:',
+    ['Regular practice beyond class, including labs, projects, and self-study',
+     'Only attending lectures',
+     'No need for practice once tools are known',
+     'Last-minute studying before exams'],
+    'Time expectations.',
+    0
+  ),
+  makeQ('mca49','Section 5 – Motivation, Ethics & Time','D5',
+    'I am choosing this MCA path after thinking about my interest in computing, not only because AI sounds popular.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('mca50','Section 5 – Motivation, Ethics & Time','D5',
+    'If AI produces a security-sensitive code sample (e.g., login, payment), what should a responsible student do?',
+    ['Review, test, and validate security implications before use',
+     'Use it blindly because AI suggested it',
+     'Ignore security until later',
+     'Post the code publicly with secrets intact'],
+    'Security-aware ethics.',
+    0
+  )
+];
+explanations.MCA_AI = explanations.default;
+    programQuestions.BCA_AI=[
+  // D1 – Foundations & Program Fit
+  makeQ('bca1','Section 1 – Foundations & Program Fit','D1',
+    'You see a problem that asks you to count how many numbers in a list are greater than 50. What is the most direct approach?',
+    ['Loop through the list and count each number greater than 50',
+     'Sort the list first and then ignore the condition',
+     'Create a new list for every number',
+     'Avoid loops and just guess'],
+    'Basic list and loop thinking.',
+    0
+  ),
+  makeQ('bca2','Section 1 – Foundations & Program Fit','D1',
+    'A student is checking if a roll number is even by seeing if roll % 2 == 0. This logic is:',
+    ['Correct',
+     'Always incorrect',
+     'Only correct for small numbers',
+     'Unrelated to even/odd'],
+    'Core modulus idea.',
+    0
+  ),
+  makeQ('bca3','Section 1 – Foundations & Program Fit','D1',
+    'Which student seems more aligned to BCA with AI?',
+    ['Enjoys logic, problem solving, and digital tools',
+     'Dislikes computers completely',
+     'Only wants purely theoretical work with no practice',
+     'Wants to avoid maths and logic entirely'],
+    'Within-program fit.',
+    0
+  ),
+  makeQ('bca4','Section 1 – Foundations & Program Fit','D1',
+    'I enjoy thinking step-by-step about how a task can be converted into a set of instructions.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca5','Section 1 – Foundations & Program Fit','D1',
+    'A list has 5 names. The program adds 3 more. How many names are there now?',
+    ['8','5','3','15'],
+    'Simple counting with updates.',
+    0
+  ),
+  makeQ('bca6','Section 1 – Foundations & Program Fit','D1',
+    'I can stay interested in working on a problem even if it needs a few attempts to get the logic correct.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca7','Section 1 – Foundations & Program Fit','D1',
+    'When I see a timetable or marks list, I try to read patterns like who scored more or which day is busier.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca8','Section 1 – Foundations & Program Fit','D1',
+    'Basic comfort with numbers and logic is important for BCA with AI.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca9','Section 1 – Foundations & Program Fit','D1',
+    'A student writes code that works for only one input and does not check others. This attitude is:',
+    ['Weak for a BCA student',
+     'Perfectly fine',
+     'Better than testing too much',
+     'Always enough'],
+    'Testing mindset.',
+    0
+  ),
+  makeQ('bca10','Section 1 – Foundations & Program Fit','D1',
+    'I am curious how software, apps, and websites are built behind the scenes.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D2 – AI & Tool Readiness
+  makeQ('bca11','Section 2 – AI & Tool Readiness','D2',
+    'You write a simple program and want suggestions to improve variable names and comments. How can AI help best?',
+    ['Ask AI for suggestions and then pick what improves clarity',
+     'Ask AI to change entire logic without you reading it',
+     'Use AI only for adding emojis',
+     'Avoid AI because it is always wrong'],
+    'Tool usage for clarity.',
+    0
+  ),
+  makeQ('bca12','Section 2 – AI & Tool Readiness','D2',
+    'I would like to use AI tools to help me understand errors and debug code.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca13','Section 2 – AI & Tool Readiness','D2',
+    'The best way to use AI for code explanations is to:',
+    ['Ask for an explanation, then test on small examples yourself',
+     'Copy explanation without checking',
+     'Avoid reading the explanation',
+     'Use it only a few minutes before exams'],
+    'Learning attitude with AI.',
+    0
+  ),
+  makeQ('bca14','Section 2 – AI & Tool Readiness','D2',
+    'I am open to learning new editors, IDEs, or platforms used in BCA with AI.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca15','Section 2 – AI & Tool Readiness','D2',
+    'Using AI to directly copy answers without understanding is:',
+    ['Harmful to my learning and ethics',
+     'The best way to save time',
+     'Recommended by everyone',
+     'Better than asking doubts'],
+    'Ethical stance.',
+    0
+  ),
+  makeQ('bca16','Section 2 – AI & Tool Readiness','D2',
+    'I am willing to experiment with AI tools as long as I respect privacy and academic honesty rules.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca17','Section 2 – AI & Tool Readiness','D2',
+    'For a small website idea, AI can help most by:',
+    ['Helping draft structure and sample code which I then understand and refine',
+     'Replacing the need to learn HTML or CSS',
+     'Deciding my entire career for me',
+     'Avoiding any testing'],
+    'Applied tool support.',
+    0
+  ),
+  makeQ('bca18','Section 2 – AI & Tool Readiness','D2',
+    'I see AI as a helper to speed up coding, not as a replacement for my own thinking.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca19','Section 2 – AI & Tool Readiness','D2',
+    'If an AI tool suggests insecure code (like hard-coded passwords), what should I do?',
+    ['Fix and secure it before use or reject it',
+     'Use it as is because it works',
+     'Share it publicly with passwords visible',
+     'Ignore security forever'],
+    'Security awareness.',
+    0
+  ),
+  makeQ('bca20','Section 2 – AI & Tool Readiness','D2',
+    'I am comfortable reading short documentation or help guides when a new tool is introduced.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D3 – Projects & Applied Learning
+  makeQ('bca21','Section 3 – Projects & Applied Learning','D3',
+    'For a mini-project, your team must build a simple student record app. What is the best first step?',
+    ['Define basic features and data to be stored, then plan screens',
+     'Start coding random features',
+     'Collect fancy themes before understanding the need',
+     'Wait till the last week and then panic'],
+    'Project planning.',
+    0
+  ),
+  makeQ('bca22','Section 3 – Projects & Applied Learning','D3',
+    'I am willing to work in a small team to build and present an application.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca23','Section 3 – Projects & Applied Learning','D3',
+    'A bug appears only when many users use the app at once. What should you do?',
+    ['Try to reproduce heavy use and check logs',
+     'Ignore it because it is rare',
+     'Change the logo',
+     'Only restart the device repeatedly'],
+    'Debug mindset.',
+    0
+  ),
+  makeQ('bca24','Section 3 – Projects & Applied Learning','D3',
+    'I like the idea of doing shadow projects based on real companies (e-commerce, OTT, etc.).',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca25','Section 3 – Projects & Applied Learning','D3',
+    'Which behaviour is best during project work?',
+    ['Taking feedback, improving code, and helping teammates',
+     'Working alone and ignoring team members',
+     'Copying someone else’s code secretly',
+     'Avoiding testing to save time'],
+    'Professionalism.',
+    0
+  ),
+  makeQ('bca26','Section 3 – Projects & Applied Learning','D3',
+    'I am ready to present my project and explain how it works, even if I feel slightly nervous.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca27','Section 3 – Projects & Applied Learning','D3',
+    'For a data-structure performance study, what matters most?',
+    ['How operations behave as data grows',
+     'How colourful the UI is',
+     'Only your favourite examples',
+     'Ignoring results and writing theory'],
+    'Analytical thinking.',
+    0
+  ),
+  makeQ('bca28','Section 3 – Projects & Applied Learning','D3',
+    'If a faculty member points out that my code is correct but hard to read, I should:',
+    ['Refactor to improve readability and naming',
+     'Ignore feedback',
+     'Add more random comments',
+     'Complain to classmates only'],
+    'Code quality attitude.',
+    0
+  ),
+  makeQ('bca29','Section 3 – Projects & Applied Learning','D3',
+    'I can handle open-ended tasks where there is more than one way to solve a computing problem.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca30','Section 3 – Projects & Applied Learning','D3',
+    'Which student is more likely to succeed in BCA projects?',
+    ['One who plans, tests, and iterates',
+     'One who waits for copyable code',
+     'One who avoids collaboration',
+     'One who only works on the last day'],
+    'Success pattern.',
+    0
+  ),
+
+  // D4 – Self-Study & Certification Discipline
+  makeQ('bca31','Section 4 – Self-Study & Certification Discipline','D4',
+    'BCA with AI will expect practice in labs and self-study. I am prepared for this.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca32','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I score low in a practice quiz on logic, my best response is to:',
+    ['Analyse mistakes and try another quiz later',
+     'Quit programming',
+     'Blame the platform',
+     'Memorise answers without understanding'],
+    'Growth mindset.',
+    0
+  ),
+  makeQ('bca33','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can dedicate fixed hours every week for practice beyond scheduled classes.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca34','Section 4 – Self-Study & Certification Discipline','D4',
+    'Learning technology often needs repeat practice. I am okay revising topics multiple times.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca35','Section 4 – Self-Study & Certification Discipline','D4',
+    'Which student is more likely to clear a global certification in computing?',
+    ['One who practises regularly and uses mock tests',
+     'One who studies only on exam day',
+     'One who avoids practice questions',
+     'One who ignores feedback'],
+    'Certification readiness.',
+    0
+  ),
+  makeQ('bca36','Section 4 – Self-Study & Certification Discipline','D4',
+    'I am okay using online platforms and lab tools to practise coding and logic questions.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca37','Section 4 – Self-Study & Certification Discipline','D4',
+    'If there is no immediate exam, I can still follow my weekly practice plan.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca38','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student who relies only on last-minute effort in coding subjects is likely to:',
+    ['Struggle to build strong foundations',
+     'Always succeed easily',
+     'Need no feedback',
+     'Be better than everyone'],
+    'Reality check.',
+    0
+  ),
+  makeQ('bca39','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can manage my time between classes, lab work, self-study, and personal life.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca40','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I do not understand a concept (like arrays or loops) at first, I will:',
+    ['Ask for help and practise smaller examples',
+     'Give up on that topic',
+     'Only memorise final answers',
+     'Leave it for exam day'],
+    'Response to difficulty.',
+    0
+  ),
+
+  // D5 – Motivation, Ethics & Time
+  makeQ('bca41','Section 5 – Motivation, Ethics & Time','D5',
+    'I am choosing BCA with AI because I genuinely like computing and problem solving.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca42','Section 5 – Motivation, Ethics & Time','D5',
+    'Using AI to generate entire assignments without understanding is:',
+    ['Against learning goals and academic ethics',
+     'The best way to finish quickly',
+     'Always acceptable',
+     'Better than reading books'],
+    'Ethical judgement.',
+    0
+  ),
+  makeQ('bca43','Section 5 – Motivation, Ethics & Time','D5',
+    'I am ready to invest weekly time in coding practice, projects, and learning AI tools.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca44','Section 5 – Motivation, Ethics & Time','D5',
+    'Which student appears more ready for BCA with AI?',
+    ['Curious, disciplined, and open to feedback',
+     'Looking only for shortcuts',
+     'Unwilling to use new tools',
+     'Unwilling to practise'],
+    'Mindset fit.',
+    0
+  ),
+  makeQ('bca45','Section 5 – Motivation, Ethics & Time','D5',
+    'If AI suggests a solution, I will:',
+    ['Check, understand, and improve it before using',
+     'Submit blindly',
+     'Ignore all AI tools',
+     'Share without checking'],
+    'Responsibility with AI.',
+    0
+  ),
+  makeQ('bca46','Section 5 – Motivation, Ethics & Time','D5',
+    'I understand that technology programs require consistent effort over semesters, not just before exams.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca47','Section 5 – Motivation, Ethics & Time','D5',
+    'I am comfortable asking for help or clarification when I do not understand a concept.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca48','Section 5 – Motivation, Ethics & Time','D5',
+    'If I join this program, I see myself actively using the AI Lab and project facilities.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bca49','Section 5 – Motivation, Ethics & Time','D5',
+    'Choosing a program only because friends chose it is:',
+    ['Risky unless it matches my own strengths',
+     'Always the best decision',
+     'Better than comparing programs',
+     'A guarantee of success'],
+    'Decision quality.',
+    0
+  ),
+  makeQ('bca50','Section 5 – Motivation, Ethics & Time','D5',
+    'I am willing to follow rules related to AI usage, plagiarism, and project work.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  )
+];
+explanations.BCA_AI = explanations.default;
+    programQuestions.BBA_AI=[
+  // D1 – Foundations & Program Fit
+  makeQ('bba1','Section 1 – Foundations & Program Fit','D1',
+    'A shop’s monthly revenue increases from ₹1,00,000 to ₹1,20,000 while profit stays the same. What is the most likely reason?',
+    ['Costs increased along with revenue',
+     'Customers stopped buying',
+     'The owner forgot to count revenue',
+     'There is never any change in costs'],
+    'Basic revenue–cost logic.',
+    0
+  ),
+  makeQ('bba2','Section 1 – Foundations & Program Fit','D1',
+    'If total sales are 500 units and each unit is sold at ₹200, what is total revenue?',
+    ['₹1,00,000',
+     '₹500',
+     '₹200',
+     '₹2,500'],
+    'Simple quantity × price.',
+    0
+  ),
+  makeQ('bba3','Section 1 – Foundations & Program Fit','D1',
+    'Which student seems more aligned to BBA with AI?',
+    ['Enjoys thinking about business situations, customers, and teams',
+     'Dislikes working with people completely',
+     'Only wants highly technical coding work',
+     'Wants to avoid any presentations or discussions'],
+    'Program fit.',
+    0
+  ),
+  makeQ('bba4','Section 1 – Foundations & Program Fit','D1',
+    'A business runs a promotion that increases sales but also increases returns and complaints sharply. What should a manager think?',
+    ['Check if the promotion is attracting the right customers and if service quality is suffering',
+     'Assume everything is perfect',
+     'Ignore complaints',
+     'Stop looking at data'],
+    'Balancing volume and quality.',
+    0
+  ),
+  makeQ('bba5','Section 1 – Foundations & Program Fit','D1',
+    'If a product has high demand but very low profit margin, which option is most sensible?',
+    ['Analyse cost structure and pricing before expanding it further',
+     'Expand it blindly without checking profit',
+     'Stop selling all products',
+     'Ignore margin calculations'],
+    'Profit vs volume.',
+    0
+  ),
+  makeQ('bba6','Section 1 – Foundations & Program Fit','D1',
+    'I enjoy reading or hearing about real companies, brands, or business cases.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba7','Section 1 – Foundations & Program Fit','D1',
+    'When I see a basic chart or table about sales or customers, I try to understand what it suggests.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba8','Section 1 – Foundations & Program Fit','D1',
+    'A manager has to allocate a limited budget across three marketing channels. What should they do first?',
+    ['Compare expected impact and costs of each channel',
+     'Spend everything on the most popular social media platform blindly',
+     'Divide equally without any reasoning',
+     'Ignore data and ask a random friend'],
+    'Resource allocation.',
+    0
+  ),
+  makeQ('bba9','Section 1 – Foundations & Program Fit','D1',
+    'I am comfortable doing simple percentage or ratio calculations when needed.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba10','Section 1 – Foundations & Program Fit','D1',
+    'I like to understand the logic behind business decisions instead of just memorising theory.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D2 – AI & Tool Readiness
+  makeQ('bba11','Section 2 – AI & Tool Readiness','D2',
+    'You need to prepare a basic competitor comparison for two brands. How can AI tools help best?',
+    ['Help outline key comparison points and draft a first summary which I then verify',
+     'Decide the final strategy alone',
+     'Replace all human thinking',
+     'Only generate fancy slogans'],
+    'AI for idea and structure.',
+    0
+  ),
+  makeQ('bba12','Section 2 – AI & Tool Readiness','D2',
+    'I am willing to use AI tools to help with presentations, emails, or marketing ideas, while still checking and improving them.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba13','Section 2 – AI & Tool Readiness','D2',
+    'Using AI to write a marketing assignment and submitting it without reading or checking is:',
+    ['Unethical and risky for real learning',
+     'The best way to save time',
+     'Always recommended',
+     'Better than doing any work myself'],
+    'Ethical stance.',
+    0
+  ),
+  makeQ('bba14','Section 2 – AI & Tool Readiness','D2',
+    'A student uses ChatGPT to suggest a presentation outline, then customises slides with real data and their own examples. This is:',
+    ['A good way to use AI support',
+     'Always wrong',
+     'Worse than copying from a friend',
+     'Not possible'],
+    'Balanced use.',
+    0
+  ),
+  makeQ('bba15','Section 2 – AI & Tool Readiness','D2',
+    'I am open to learning new digital tools (slides, spreadsheets, dashboards, CRM, etc.) that may be used in a BBA with AI program.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba16','Section 2 – AI & Tool Readiness','D2',
+    'Which use of AI shows the best managerial thinking?',
+    ['Using AI to generate options, then selecting based on data, context, and ethics',
+     'Accepting the first AI suggestion blindly',
+     'Using AI only for decoration and emojis',
+     'Avoiding all AI tools out of fear'],
+    'Manager + AI combo.',
+    0
+  ),
+  makeQ('bba17','Section 2 – AI & Tool Readiness','D2',
+    'I see AI as a tool to support my communication, analysis, and decision-making, not as a replacement for my judgement.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba18','Section 2 – AI & Tool Readiness','D2',
+    'If AI suggests a summary of customer feedback, what is the best next step?',
+    ['Scan the original feedback or key samples to be sure the summary is fair',
+     'Forward the summary without any check',
+     'Delete all original feedback',
+     'Change data to match the AI summary'],
+    'Validation habit.',
+    0
+  ),
+  makeQ('bba19','Section 2 – AI & Tool Readiness','D2',
+    'I am comfortable learning to use AI features inside tools like Excel, PowerPoint, or CRM software.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba20','Section 2 – AI & Tool Readiness','D2',
+    'If an AI tool is used to generate customer messages, a responsible student should:',
+    ['Review tone, correctness, and ethics before sending',
+     'Send without reading',
+     'Include misleading claims to increase sales',
+     'Ignore customer privacy rules'],
+    'Responsible communication.',
+    0
+  ),
+
+  // D3 – Projects & Applied Learning
+  makeQ('bba21','Section 3 – Projects & Applied Learning','D3',
+    'Your team is asked to map the customer journey for an online food-delivery app. What is the best first step?',
+    ['List key stages (awareness, ordering, delivery, feedback) and collect real examples',
+     'Immediately design the app logo',
+     'Talk only about favourite dishes',
+     'Skip user experience and jump to finance'],
+    'Customer journey mapping.',
+    0
+  ),
+  makeQ('bba22','Section 3 – Projects & Applied Learning','D3',
+    'I am willing to present case analyses or project findings to a small group or class.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba23','Section 3 – Projects & Applied Learning','D3',
+    'For a benchmarking project comparing two e-commerce brands, which element adds the most value?',
+    ['Using clear criteria (price, service, delivery, returns) backed with evidence',
+     'Only writing personal opinions',
+     'Copying social media comments blindly',
+     'Focusing only on colours and logos'],
+    'Benchmarking quality.',
+    0
+  ),
+  makeQ('bba24','Section 3 – Projects & Applied Learning','D3',
+    'I like the idea of working on live or shadow projects on brands like Amazon, Zomato, or Netflix.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba25','Section 3 – Projects & Applied Learning','D3',
+    'A teacher tells your group that the PPT looks nice but the analysis is weak. What is the best response?',
+    ['Improve the analysis and keep visuals that support the message',
+     'Ignore the comment',
+     'Delete all visuals only',
+     'Argue without checking the content'],
+    'Using feedback.',
+    0
+  ),
+  makeQ('bba26','Section 3 – Projects & Applied Learning','D3',
+    'I can handle project tasks where there is no single right answer but I must justify my recommendation clearly.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba27','Section 3 – Projects & Applied Learning','D3',
+    'For a basic marketing plan assignment, which combination is strongest?',
+    ['Defined target segment, clear value proposition, and realistic channels',
+     'Only a catchy slogan',
+     'Only a very long report without structure',
+     'Random bullet points'],
+    'Quality of plan.',
+    0
+  ),
+  makeQ('bba28','Section 3 – Projects & Applied Learning','D3',
+    'When working in a team project, I am willing to contribute in research, slides, speaking, or coordination.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba29','Section 3 – Projects & Applied Learning','D3',
+    'Two teammates disagree on a recommendation for a brand. What is the best way forward?',
+    ['Compare pros and cons, check data, and agree on a reasoned conclusion',
+     'Choose one view based on friendship only',
+     'Avoid taking any decision',
+     'Let the loudest person win'],
+    'Collaborative decision-making.',
+    0
+  ),
+  makeQ('bba30','Section 3 – Projects & Applied Learning','D3',
+    'Which student is more likely to succeed in BBA projects?',
+    ['One who plans, divides work fairly, and improves after feedback',
+     'One who copies projects last minute',
+     'One who never attends group meetings',
+     'One who refuses to present'],
+    'Success pattern.',
+    0
+  ),
+
+  // D4 – Self-Study & Certification Discipline
+  makeQ('bba31','Section 4 – Self-Study & Certification Discipline','D4',
+    'BBA with AI will expect weekly self-study, case reading, and practice beyond classes. I am prepared for this.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba32','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I score low in a business aptitude or reasoning quiz, my best response is to:',
+    ['Review what went wrong, ask doubts, and reattempt later',
+     'Avoid all future quizzes',
+     'Blame the pattern and stop learning',
+     'Guess randomly next time'],
+    'Growth mindset.',
+    0
+  ),
+  makeQ('bba33','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can dedicate fixed hours every week to reading cases, practising questions, and revising notes.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba34','Section 4 – Self-Study & Certification Discipline','D4',
+    'Many management skills improve slowly with practice. I am okay revisiting concepts like marketing mix or financial basics multiple times.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba35','Section 4 – Self-Study & Certification Discipline','D4',
+    'Which student is more likely to clear embedded certifications (e.g., marketing, analytics, or soft-skill certifications)?',
+    ['One who practises regularly with mock assessments and tasks',
+     'One who studies only the night before exam',
+     'One who ignores mock tests',
+     'One who avoids assignments'],
+    'Certification readiness.',
+    0
+  ),
+  makeQ('bba36','Section 4 – Self-Study & Certification Discipline','D4',
+    'I am comfortable using online platforms for quizzes, assignments, or video-based learning when required.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba37','Section 4 – Self-Study & Certification Discipline','D4',
+    'If there is no test next day, I can still follow a weekly study or practice plan.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba38','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student who relies only on last-minute effort in reading cases and preparing presentations is likely to:',
+    ['Struggle to develop deep understanding',
+     'Always succeed easily',
+     'Need no feedback',
+     'Be better than everyone'],
+    'Reality check.',
+    0
+  ),
+  makeQ('bba39','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can manage my time between classes, project work, self-study, and personal life in a disciplined way.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba40','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I do not understand a concept like segmentation or break-even analysis at first, I will:',
+    ['Ask for help and try simpler examples',
+     'Drop that topic completely',
+     'Memorise slides without meaning',
+     'Wait till exam week'],
+    'Response to difficulty.',
+    0
+  ),
+
+  // D5 – Motivation, Ethics & Time
+  makeQ('bba41','Section 5 – Motivation, Ethics & Time','D5',
+    'I am choosing BBA with AI because I am genuinely interested in business, people, and organisations.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba42','Section 5 – Motivation, Ethics & Time','D5',
+    'Using AI to create fake customer reviews or mislead customers is:',
+    ['Unethical and can damage career and brand',
+     'A clever marketing hack',
+     'Always acceptable',
+     'Not related to ethics'],
+    'Ethics in marketing.',
+    0
+  ),
+  makeQ('bba43','Section 5 – Motivation, Ethics & Time','D5',
+    'I am ready to invest weekly time in reading business content, practising communication, and experimenting with AI tools.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba44','Section 5 – Motivation, Ethics & Time','D5',
+    'Which student appears more ready for BBA with AI?',
+    ['Curious about business, disciplined, and open to feedback and tools',
+     'Interested only in shortcuts',
+     'Unwilling to speak or work in teams at all',
+     'Not willing to learn new tools'],
+    'Mindset fit.',
+    0
+  ),
+  makeQ('bba45','Section 5 – Motivation, Ethics & Time','D5',
+    'If AI suggests a marketing strategy, a responsible student should:',
+    ['Check if it is realistic, ethical, and aligned to data',
+     'Apply it blindly',
+     'Ignore all laws and guidelines',
+     'Share it as professional advice without thinking'],
+    'Responsible AI judgement.',
+    0
+  ),
+  makeQ('bba46','Section 5 – Motivation, Ethics & Time','D5',
+    'I understand that a management program with AI integration needs consistent effort every semester, not just before exams.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba47','Section 5 – Motivation, Ethics & Time','D5',
+    'I am comfortable asking questions or seeking clarification when I do not understand something in class.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba48','Section 5 – Motivation, Ethics & Time','D5',
+    'If I join this program, I see myself actively participating in presentations, projects, and AI-supported activities.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bba49','Section 5 – Motivation, Ethics & Time','D5',
+    'Choosing a program only because friends chose it is:',
+    ['Risky unless it matches my strengths and interests',
+     'Always the best decision',
+     'Better than thinking myself',
+     'A guarantee of success'],
+    'Decision quality.',
+    0
+  ),
+  makeQ('bba50','Section 5 – Motivation, Ethics & Time','D5',
+    'I am willing to follow rules related to AI usage, plagiarism, group work, and assessment in this program.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  )
+];
+explanations.BBA_AI = explanations.default;
+    programQuestions.BCOM_AI=[
+  // D1 – Foundations & Program Fit
+  makeQ('bcom1','Section 1 – Foundations & Program Fit','D1',
+    'A trader buys goods for ₹80,000 and incurs transport and packing expenses of ₹5,000. Goods are sold for ₹95,000. What is the profit?',
+    ['₹10,000','₹15,000','₹5,000','₹20,000'],
+    'Think of cost price including related expenses.',
+    1
+  ),
+  makeQ('bcom2','Section 1 – Foundations & Program Fit','D1',
+    'If Sales = ₹2,50,000 and Cost of Goods Sold = ₹1,80,000, what is Gross Profit?',
+    ['₹70,000','₹4,30,000','₹1,80,000','₹2,50,000'],
+    'Gross Profit = Sales − Cost of Goods Sold.',
+    0
+  ),
+  makeQ('bcom3','Section 1 – Foundations & Program Fit','D1',
+    'Which student seems better aligned to BCom(H) with AI?',
+    ['Enjoys numbers, accounts, and understanding how businesses record transactions',
+     'Dislikes accounts and basic maths completely',
+     'Only wants creative arts work',
+     'Wants no exposure to business or finance'],
+    'Program fit for commerce.',
+    0
+  ),
+  makeQ('bcom4','Section 1 – Foundations & Program Fit','D1',
+    'A business purchases furniture for ₹30,000. This will usually be recorded as:',
+    ['An asset in the balance sheet',
+     'An expense in the profit and loss account',
+     'A liability',
+     'Owner’s capital'],
+    'Furniture gives long-term benefit.',
+    0
+  ),
+  makeQ('bcom5','Section 1 – Foundations & Program Fit','D1',
+    'If Capital is ₹1,50,000 and Liabilities are ₹50,000, what is the value of Assets?',
+    ['₹2,00,000','₹1,00,000','₹50,000','₹1,50,000'],
+    'Accounting equation: Assets = Capital + Liabilities.',
+    0
+  ),
+  makeQ('bcom6','Section 1 – Foundations & Program Fit','D1',
+    'Which transaction increases both asset and liability simultaneously?',
+    ['Taking a bank loan',
+     'Paying cash to a creditor',
+     'Owner withdrawing cash for personal use',
+     'Depreciation on machinery'],
+    'Loan brings in cash and creates a liability.',
+    0
+  ),
+  makeQ('bcom7','Section 1 – Foundations & Program Fit','D1',
+    'I feel comfortable working with simple percentages, profit–loss, and interest calculations.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom8','Section 1 – Foundations & Program Fit','D1',
+    'A trial balance does not agree. What should be the first response?',
+    ['Check postings and balances carefully to locate the error',
+     'Ignore and prepare financial statements',
+     'Randomly change figures until it tallies',
+     'Close the business'],
+    'Error location approach.',
+    0
+  ),
+  makeQ('bcom9','Section 1 – Foundations & Program Fit','D1',
+    'When you see a basic balance sheet, you are:',
+    ['Curious to understand what it says about the business',
+     'Completely uninterested',
+     'Only looking for colours and design',
+     'Able to memorise it without meaning'],
+    '',
+    null
+  ),
+  makeQ('bcom10','Section 1 – Foundations & Program Fit','D1',
+    'I can stay focused while working on account statements or numerical questions for some time.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+
+  // D2 – AI & Tool Readiness
+  makeQ('bcom11','Section 2 – AI & Tool Readiness','D2',
+    'You are analysing monthly sales data for a shop. How can AI tools help most effectively?',
+    ['Summarise trends and patterns, which I then verify and interpret',
+     'Decide final conclusions without human review',
+     'Replace all accounting entries',
+     'Guess numbers randomly'],
+    'AI for analysis support.',
+    0
+  ),
+  makeQ('bcom12','Section 2 – AI & Tool Readiness','D2',
+    'I am willing to use spreadsheets and AI-powered tools (like Excel AI or BI tools) to analyse commerce data.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom13','Section 2 – AI & Tool Readiness','D2',
+    'A student uses ChatGPT to draft a short explanation of GST, then cross-checks with official material. This is:',
+    ['A sensible learning approach',
+     'Always unethical',
+     'Not allowed in any situation',
+     'A replacement for textbooks'],
+    'Balanced use of AI.',
+    0
+  ),
+  makeQ('bcom14','Section 2 – AI & Tool Readiness','D2',
+    'I am open to learning how AI can help in areas like taxation updates, finance summaries, or compliance reminders.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom15','Section 2 – AI & Tool Readiness','D2',
+    'Using AI to generate an assignment and submitting it without understanding is:',
+    ['Against academic ethics and weak for learning',
+     'The right way to save time',
+     'Recommended practice',
+     'Better than asking questions'],
+    'Ethical stance.',
+    0
+  ),
+  makeQ('bcom16','Section 2 – AI & Tool Readiness','D2',
+    'An AI tool gives you a ratio analysis of a company. What is the best next step?',
+    ['Check the data, understand the logic, and interpret for decision-making',
+     'Copy it directly into a project without reading',
+     'Ignore all ratios as they are “just numbers”',
+     'Focus only on colours in the chart'],
+    'Using AI output thoughtfully.',
+    0
+  ),
+  makeQ('bcom17','Section 2 – AI & Tool Readiness','D2',
+    'I am willing to learn new digital tools that are used in accounting, finance, or analytics.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom18','Section 2 – AI & Tool Readiness','D2',
+    'Which use of AI in commerce work is most helpful?',
+    ['Summarising annual report sections so I can focus on key points',
+     'Replacing all human judgement in financial decisions',
+     'Making fake invoices',
+     'Ignoring legal or ethical constraints'],
+    'AI as assistant, not fraud.',
+    0
+  ),
+  makeQ('bcom19','Section 2 – AI & Tool Readiness','D2',
+    'I see AI as a support tool that still needs my understanding of accounts, law, and business.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom20','Section 2 – AI & Tool Readiness','D2',
+    'If AI suggests a tax or compliance step, the best behaviour is to:',
+    ['Confirm with reliable sources or faculty before acting',
+     'Assume it is always correct',
+     'Ignore all rules because AI knows better',
+     'Share it as advice without checking'],
+    'Compliance awareness.',
+    0
+  ),
+
+  // D3 – Projects & Applied Learning
+  makeQ('bcom21','Section 3 – Projects & Applied Learning','D3',
+    'A project asks you to analyse the financial statements of a listed company for three years. What is the best first step?',
+    ['Collect statements, arrange data, and identify key ratios to study',
+     'Start writing conclusions without seeing data',
+     'Only describe the company logo',
+     'Copy another student’s project'],
+    'Structured analysis approach.',
+    0
+  ),
+  makeQ('bcom22','Section 3 – Projects & Applied Learning','D3',
+    'I am comfortable presenting simple findings from financial or business data to a small group.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom23','Section 3 – Projects & Applied Learning','D3',
+    'If your analysis shows that a company’s profit increased but cash flow from operations fell, what should you do?',
+    ['Investigate reasons such as working capital changes or non-cash items',
+     'Ignore cash flow',
+     'Assume data is wrong without checking',
+     'Immediately advise closing the company'],
+    'Understanding profit vs cash.',
+    0
+  ),
+  makeQ('bcom24','Section 3 – Projects & Applied Learning','D3',
+    'I would like to work on shadow projects such as GST impact studies, budgeting exercises, or bank statement analysis.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom25','Section 3 – Projects & Applied Learning','D3',
+    'Which behaviour is most professional during commerce project work?',
+    ['Using authentic data, citing sources, and responding to feedback',
+     'Copying large parts of reports without citation',
+     'Ignoring faculty comments',
+     'Submitting incomplete work without explanation'],
+    'Professionalism in projects.',
+    0
+  ),
+  makeQ('bcom26','Section 3 – Projects & Applied Learning','D3',
+    'A client case study asks for three recommendations to improve working capital. Which recommendation style is best?',
+    ['Clear, practical, and supported by data and reasoning',
+     'Very fancy language with no data',
+     'Random suggestions without logic',
+     'Copy of another company’s plan without context'],
+    'Quality of recommendations.',
+    0
+  ),
+  makeQ('bcom27','Section 3 – Projects & Applied Learning','D3',
+    'I can handle open-ended tasks where I need to interpret data and support my answer, even if there is no single perfect solution.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom28','Section 3 – Projects & Applied Learning','D3',
+    'For a “Bank Reconciliation” mini-project, what adds the most value?',
+    ['Explaining reasons for differences and how they are adjusted',
+     'Only copying the bank statement',
+     'Ignoring unexplained differences',
+     'Using random figures so that totals match'],
+    'Conceptual clarity.',
+    0
+  ),
+  makeQ('bcom29','Section 3 – Projects & Applied Learning','D3',
+    'When working in a group commerce project, I am willing to contribute in data collection, analysis, or presentation.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom30','Section 3 – Projects & Applied Learning','D3',
+    'Which student is more likely to succeed in BCom(H) projects?',
+    ['One who plans, analyses data, and revises after feedback',
+     'One who waits for last-minute copying',
+     'One who avoids numbers completely',
+     'One who refuses to present'],
+    'Success pattern.',
+    0
+  ),
+
+  // D4 – Self-Study & Certification Discipline
+  makeQ('bcom31','Section 4 – Self-Study & Certification Discipline','D4',
+    'BCom(H) with AI will expect regular self-study in accounts, law, and technology. I am prepared for this.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom32','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I score low in a practice test on accounting concepts, my best response is to:',
+    ['Review mistakes, clear doubts, and try again',
+     'Avoid all future tests',
+     'Blame the pattern and stop studying',
+     'Memorise answers without understanding'],
+    'Growth mindset.',
+    0
+  ),
+  makeQ('bcom33','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can dedicate fixed hours every week for reading, practice problems, and revision beyond scheduled classes.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom34','Section 4 – Self-Study & Certification Discipline','D4',
+    'Commerce and law topics often require revisiting. I am okay revising topics multiple times.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom35','Section 4 – Self-Study & Certification Discipline','D4',
+    'Which student is more likely to clear a global or national-level finance/accounting certification?',
+    ['One who practises regularly with mock tests and structured revision',
+     'One who studies only on the last day',
+     'One who never attempts practice tests',
+     'One who completely ignores exam pattern'],
+    'Certification readiness.',
+    0
+  ),
+  makeQ('bcom36','Section 4 – Self-Study & Certification Discipline','D4',
+    'I am comfortable learning from textbooks, notes, videos, and practice questions on my own when needed.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom37','Section 4 – Self-Study & Certification Discipline','D4',
+    'If there is no immediate test, I can still follow a weekly practice plan for key subjects.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom38','Section 4 – Self-Study & Certification Discipline','D4',
+    'A student who relies only on last-minute effort in subjects like accounts and law is likely to:',
+    ['Struggle to build strong foundations',
+     'Always succeed easily',
+     'Need no guidance',
+     'Be better than everyone'],
+    'Reality check.',
+    0
+  ),
+  makeQ('bcom39','Section 4 – Self-Study & Certification Discipline','D4',
+    'I can manage my time between classes, homework, practice tests, and personal life in a disciplined way.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom40','Section 4 – Self-Study & Certification Discipline','D4',
+    'If I do not understand a concept like depreciation or provisions at first, I will:',
+    ['Ask for help and attempt simpler examples',
+     'Give up on that topic',
+     'Memorise definitions without meaning',
+     'Leave it for exam day only'],
+    'Response to difficulty.',
+    0
+  ),
+
+  // D5 – Motivation, Ethics & Time
+  makeQ('bcom41','Section 5 – Motivation, Ethics & Time','D5',
+    'I am choosing BCom(H) with AI because I am genuinely interested in commerce, finance, or business systems.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom42','Section 5 – Motivation, Ethics & Time','D5',
+    'Using AI to create fake invoices or manipulate numbers is:',
+    ['Unethical and risky for career and academics',
+     'A smart trick',
+     'Normal and acceptable',
+     'Recommended by professionals'],
+    'Ethical boundaries.',
+    0
+  ),
+  makeQ('bcom43','Section 5 – Motivation, Ethics & Time','D5',
+    'I am ready to invest weekly time in reading, problem solving, and practising AI tools related to commerce.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom44','Section 5 – Motivation, Ethics & Time','D5',
+    'Which student appears more ready for BCom(H) with AI?',
+    ['Interested in commerce, disciplined, and open to responsible use of AI',
+     'Wants shortcuts without effort',
+     'Dislikes numbers entirely',
+     'Wants only to pass without learning'],
+    'Mindset fit.',
+    0
+  ),
+  makeQ('bcom45','Section 5 – Motivation, Ethics & Time','D5',
+    'If AI suggests a summary of a complex tax article, I will:',
+    ['Use it as a starting point and still consult reliable sources',
+     'Submit it as final advice without checking',
+     'Ignore all laws',
+     'Share it as professional opinion under my name'],
+    'Responsible AI use.',
+    0
+  ),
+  makeQ('bcom46','Section 5 – Motivation, Ethics & Time','D5',
+    'I understand that a commerce program with AI integration needs consistent effort over all semesters, not only before exams.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom47','Section 5 – Motivation, Ethics & Time','D5',
+    'I am comfortable asking questions in class or to faculty when I do not understand something.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom48','Section 5 – Motivation, Ethics & Time','D5',
+    'Choosing a program only because friends chose it is:',
+    ['Risky unless it matches my own strengths',
+     'Always the best method',
+     'Better than thinking independently',
+     'A guarantee of success'],
+    'Decision quality.',
+    0
+  ),
+  makeQ('bcom49','Section 5 – Motivation, Ethics & Time','D5',
+    'I see this program as a path to a serious commerce / finance career, not just as a trend.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  ),
+  makeQ('bcom50','Section 5 – Motivation, Ethics & Time','D5',
+    'I am willing to follow rules related to AI usage, plagiarism, data privacy, and project work.',
+    ['Strongly disagree','Disagree','Agree','Strongly agree'],
+    '',
+    null
+  )
+];
+explanations.BCOM_AI = explanations.default;
+    explanations.MBA_AI=explanations.default;
+    explanations.MCA_AI=explanations.default;
+    explanations.BCA_AI=explanations.default;
+    explanations.BBA_AI=explanations.default;
+    explanations.BCOM_AI=explanations.default;
+
+    /* --------- ENGINE: PICK QUESTIONS, RENDER, SCORE --------- */
+    const student={};
+    let quiz=[],answers={},currentIndex=0,timeLeft=TOTAL_TIME,timerInterval=null,programCode='';
+    let correctIndexMap={}; // q.id -> correct index after shuffling
+
+    const el=id=>document.getElementById(id);
+    const ugFields=document.querySelectorAll('.ug-only');
+    const gradFields=document.querySelectorAll('.grad-only');
+
+    el('program').addEventListener('change',()=>{
+      const code=el('program').value;
+      const t=PROGRAM_TYPES[code];
+      if(t==='UG'){
+        ugFields.forEach(x=>x.classList.remove('hidden'));
+        gradFields.forEach(x=>x.classList.add('hidden'));
+      }else if(t==='PG'){
+        ugFields.forEach(x=>x.classList.add('hidden'));
+        gradFields.forEach(x=>x.classList.remove('hidden'));
+      }else{
+        ugFields.forEach(x=>x.classList.add('hidden'));
+        gradFields.forEach(x=>x.classList.add('hidden'));
+      }
+    });
+
+    function shuffle(arr){return [...arr].sort(()=>Math.random()-.5);}
+
+    function pickBalanced(pool,count=18){
+      const byDim={D1:[],D2:[],D3:[],D4:[],D5:[]};
+      pool.forEach(q=>byDim[q.dim].push(q));
+      const selected=[];
+      const targets={D1:4,D2:4,D3:4,D4:3,D5:3};
+      Object.keys(targets).forEach(dim=>{
+        selected.push(...shuffle(byDim[dim]).slice(0,Math.min(targets[dim],byDim[dim].length)));
+      });
+      return shuffle(selected).slice(0,count).map((q,i)=>({...q,displayNo:i+1}));
+    }
+
+    function validateStart(){
+      if(!el('name').value.trim() || !el('phone').value.trim() || !el('program').value){
+        return 'Please fill in name, phone, and chosen program.';
+      }
+      const t=PROGRAM_TYPES[el('program').value];
+      if(t==='UG'){
+        if(!el('board').value || !el('stream').value){
+          return 'For UG programs, please select Class 12th Board and Stream.';
+        }
+      }
+      if(t==='PG'){
+        if(!el('gradStream').value){
+          return 'For PG programs, please select Graduation Stream / Background.';
+        }
+      }
+      return '';
+    }
+
+    function startTimer(){
+      clearInterval(timerInterval);
+      timerInterval=setInterval(()=>{
+        timeLeft--;
+        renderTimer();
+        if(timeLeft<=0){
+          clearInterval(timerInterval);
+          submitQuiz(true);
+        }
+      },1000);
+    }
+
+    function renderTimer(){
+      const m=String(Math.floor(timeLeft/60)).padStart(2,'0');
+      const s=String(timeLeft%60).padStart(2,'0');
+      const tp=el('timerPill');
+      tp.textContent=`${m}:${s}`;
+      tp.className='pill timer ' + (timeLeft<=120?'danger':timeLeft<=300?'warn':'good');
+    }
+
+    function renderQuestion(){
+      const q=quiz[currentIndex];
+      el('qNo').textContent=q.displayNo;
+      el('qText').textContent=q.text;
+      el('qIndex').textContent=q.displayNo;
+      el('qTotal').textContent=quiz.length;
+      el('sectionLabel').textContent=q.section;
+      el('sectionLabelTop').textContent=q.section;
+      const sc=el('qScenario');
+      if(q.scenario){
+        sc.textContent=q.scenario;
+        sc.classList.remove('hidden');
+      }else{
+        sc.textContent='';
+        sc.classList.add('hidden');
+      }
+      const optWrap=el('qOptions');
+      optWrap.innerHTML='';
+      const letters=['A','B','C','D'];
+
+      // Build shuffled options with mapping
+      const optObjs=q.options.map((opt,i)=>({opt,i}));
+      const shuffled=shuffle(optObjs);
+      if(q.correct!==null && q.correct!==undefined){
+        const newPos=shuffled.findIndex(o=>o.i===q.correct);
+        correctIndexMap[q.id]=newPos;
+      }
+
+      shuffled.forEach((obj,i)=>{
+        const div=document.createElement('div');
+        div.className='opt';
+        const checked=answers[q.id]===i?'checked':'';
+        div.innerHTML=`
+          <input type="radio" id="q_${q.id}_${i}" name="q_${q.id}" value="${i}" ${checked}>
+          <label for="q_${q.id}_${i}">
+            <span class="opt-key">${letters[i]}</span>
+            <span>${obj.opt}</span>
+          </label>`;
+        optWrap.appendChild(div);
+      });
+
+      document.querySelectorAll(`#qOptions input[name="q_${q.id}"]`).forEach(inp=>{
+        inp.addEventListener('change',()=>{
+          answers[q.id]=Number(inp.value);
+          updateNav();
+        });
+      });
+      el('prevBtn').disabled=currentIndex===0;
+      el('nextBtn').textContent=currentIndex===quiz.length-1?'Submit':'Next';
+      updateNav();
+      const pct=((currentIndex)/quiz.length)*100;
+      el('bar').style.width=`${pct}%`;
+    }
+
+    function updateNav(){
+      const q=quiz[currentIndex];
+      el('nextBtn').disabled=(answers[q.id]===undefined);
+    }
+
+    function getDimensionBand(p){
+      if(p>=70) return ['High','high'];
+      if(p>=50) return ['Medium','medium'];
+      return ['Low','low'];
+    }
+
+    function scoreQuestion(q,a){
+      const correct=correctIndexMap[q.id];
+      if(correct!==undefined){
+        return a===correct ? 3 : 0;
+      }
+      const attMap=[0,1,2,3];
+      return attMap[a] ?? 0;
+    }
+
+    function submitQuiz(auto=false){
+      clearInterval(timerInterval);
+      const dimTotals={D1:0,D2:0,D3:0,D4:0,D5:0};
+      const dimMax={D1:0,D2:0,D3:0,D4:0,D5:0};
+      quiz.forEach(q=>{
+        const val=answers[q.id] ?? 0;
+        dimTotals[q.dim]+=scoreQuestion(q,val);
+        dimMax[q.dim]+=3;
+      });
+      const dimPerc={};
+      Object.keys(dimTotals).forEach(d=>{
+        dimPerc[d]=Math.round((dimTotals[d]/(dimMax[d]||1))*100);
+      });
+      let overall=Math.round(Object.keys(WEIGHTS).reduce((acc,d)=>acc+(dimPerc[d]*WEIGHTS[d]),0));
+      if(isNaN(overall)) overall=0;
+      const band=overall>=70?'Strongly Suitable':overall>=50?'Suitable with Support':'Not Currently Suitable';
+      const note=overall>=70
+        ?'The student appears well aligned with the academic, project, AI, and discipline requirements of the selected program.'
+        :overall>=50
+          ?'The student shows potential but may need mentoring, bridge support, or structured follow-up in some areas.'
+          :'The student may currently need stronger foundations, discipline, or program-fit counselling before this pathway.';
+      el('studentNameOut').textContent=student.name;
+      el('overallBand').textContent=`${band} for ${student.programName}`;
+      el('overallNote').textContent=(auto?'Time ended. ':'')+note;
+
+      const mini=el('miniScores');
+      mini.innerHTML='';
+      const shareScores=el('shareScores');
+      shareScores.innerHTML='';
+      Object.keys(DIMS).forEach(d=>{
+        const item=document.createElement('div');
+        item.className='mini';
+        item.innerHTML=`
+          <div class="mini-code">${d}</div>
+          <strong>${dimPerc[d]}%</strong>
+          <div class="mini-label">${DIMS[d]}</div>
+        `;
+        mini.appendChild(item);
+        const chip=document.createElement('div');
+        chip.className='score-chip';
+        chip.innerHTML=`<div class="k">${d} – ${DIMS[d]}</div><div class="v">${dimPerc[d]}%</div>`;
+        shareScores.appendChild(chip);
+      });
+
+      const dimList=el('dimList');
+      dimList.innerHTML='';
+      Object.keys(DIMS).forEach(d=>{
+        const [label,cls]=getDimensionBand(dimPerc[d]);
+        const exp=(explanations[programCode]||explanations.default)[d] || explanations.default[d];
+        const bl=document.createElement('div');
+        bl.className='dim';
+        bl.innerHTML=`<h3>${DIMS[d]} <span class="tag ${cls}">${label}</span></h3><div>${exp[label.toLowerCase()]}</div>`;
+        dimList.appendChild(bl);
+      });
+
+      el('shareBand').textContent=`${band}`;
+      el('shareMeta').textContent=`${student.name} • ${student.programName} • ${student.metaLine}`;
+      el('shareScore').textContent=`${overall}/100`;
+
+      el('registration').classList.add('hidden');
+      el('quizScreen').classList.add('hidden');
+      el('resultScreen').classList.remove('hidden');
+
+      window.latestResultText=
+        `GJIMT AI Integrated Programs Suitability Result\n`+
+        `Name: ${student.name}\nProgram: ${student.programName}\nBackground: ${student.metaLine}\n`+
+        `Overall: ${band} (${overall}/100)\n`+
+        `D1 Foundations: ${dimPerc.D1}%\nD2 AI & Tools: ${dimPerc.D2}%\n`+
+        `D3 Projects: ${dimPerc.D3}%\nD4 Self-Study: ${dimPerc.D4}%\n`+
+        `D5 Motivation/Ethics: ${dimPerc.D5}%\nNote: ${note}`;
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    el('startBtn').addEventListener('click',()=>{
+      const err=validateStart();
+      if(err){alert(err);return;}
+      programCode=el('program').value;
+      const pool=programQuestions[programCode];
+      if(!pool || !pool.length){
+        alert('Question pool not found for this program.');
+        return;
+      }
+      student.name=el('name').value.trim();
+      student.phone=el('phone').value.trim();
+      student.programName=el('program').selectedOptions[0].textContent;
+      const type=PROGRAM_TYPES[programCode];
+      student.metaLine= type==='UG'
+        ? `${el('board').value} • ${el('stream').value}`
+        : `${el('gradStream').value}`;
+      quiz=pickBalanced(pool,Math.min(18,pool.length));
+      answers={};
+      correctIndexMap={};
+      currentIndex=0;
+      timeLeft=TOTAL_TIME;
+      el('programPill').textContent=student.programName;
+      el('registration').classList.add('hidden');
+      el('quizScreen').classList.remove('hidden');
+      renderTimer();
+      startTimer();
+      renderQuestion();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+
+    el('prevBtn').addEventListener('click',()=>{
+      if(currentIndex>0){
+        currentIndex--;
+        renderQuestion();
+      }
+    });
+    el('nextBtn').addEventListener('click',()=>{
+      if(currentIndex<quiz.length-1){
+        currentIndex++;
+        renderQuestion();
+      }else{
+        submitQuiz(false);
+      }
+    });
+
+    el('copyTextBtn').addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText(window.latestResultText||'');
+        alert('Summary copied. You can paste it into WhatsApp.');
+      }catch(e){
+        alert('Could not copy automatically. Please copy manually from the result.');
+      }
+    });
+
+    el('downloadCardBtn').addEventListener('click',async()=>{
+      const canvas=await html2canvas(el('shareCard'),{backgroundColor:null,scale:2,useCORS:true});
+      const link=document.createElement('a');
+      link.download='gjimt-ai-result-card.png';
+      link.href=canvas.toDataURL('image/png');
+      link.click();
+    });
+  </script>
+</body>
+</html>
