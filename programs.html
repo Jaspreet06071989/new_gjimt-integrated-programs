@@ -375,26 +375,7 @@
   gap: 8px;
   width: 100%;
 }
-/* ===== Shadow Project Floating Button ===== */
-.shadow-btn{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #b11217;
-  color: #fff;
-  padding: 14px 22px;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  animation: blink 1.2s infinite;
-  z-index: 9999;
-}
 
-.shadow-btn:hover{
-  background: #8f0d12;
-  transform: scale(1.05);
-}
 
 /* Blinking Effect */
 @keyframes blink{
@@ -441,7 +422,102 @@
   }
 
 }
-.qr-btn{ position: fixed; bottom: 90px; /* just above shadow button */ right: 20px; background: #b11217; /* SAME COLOR AS YOUR THEME */ color: #fff; padding: 14px 22px; border-radius: 50px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 9999; } .qr-btn:hover{ background: #8f0d12; transform: scale(1.05); } /* QR MODAL */ .qr-modal{ display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center; } .qr-content{ background: #fff; padding: 25px; border-radius: 15px; text-align: center; position: relative; } .qr-content img{ width: 220px; margin-top: 15px; } .close-btn{ position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #333; }
+/* ===== SHADOW PROJECT BUTTON ===== */
+.shadow-btn{
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+
+  background: #b11217;
+  color: #fff;
+
+  padding: 12px 18px;
+  border-radius: 50px;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+  animation: blink 1.2s infinite;
+  z-index: 9999;
+
+  white-space: nowrap;
+}
+
+.shadow-btn:hover{
+  background: #8f0d12;
+  transform: scale(1.05);
+}
+
+/* ===== QR BUTTON ===== */
+.qr-btn{
+  position: fixed;
+
+  bottom: 85px; /* Above shadow button */
+  right: 15px;
+
+  background: #b11217;
+  color: #fff;
+
+  padding: 12px 18px;
+  border-radius: 50px;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+  z-index: 9999;
+
+  white-space: nowrap;
+}
+
+.qr-btn:hover{
+  background: #8f0d12;
+  transform: scale(1.05);
+}
+
+/* ===== MOBILE RESPONSIVE FIX ===== */
+@media (max-width: 768px){
+
+  .qr-btn,
+  .shadow-btn{
+
+    right: 10px;
+    left: 10px;
+
+    width: calc(100% - 20px);
+
+    text-align: center;
+
+    font-size: 13px;
+    padding: 12px 10px;
+
+    border-radius: 14px;
+  }
+
+  .qr-btn{
+    bottom: 80px;
+  }
+
+  .shadow-btn{
+    bottom: 20px;
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px){
+
+  .qr-btn,
+  .shadow-btn{
+    font-size: 12px;
+    padding: 11px 8px;
+  }
+
+}
 
   </style>
 </head>
