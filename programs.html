@@ -11,7 +11,67 @@
   <style>
 
 /* ================= MOBILE & TABLET RESPONSIVE ================= */
+/* ===== PAGE EXTRA SPACE ===== */
+body{
+    padding-bottom: 140px; /* Prevent content hiding */
+}
 
+/* ===== FIXED BUTTONS CONTAINER ===== */
+.fixed-buttons{
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 90%;
+    max-width: 320px;
+}
+
+/* ===== COMMON BUTTON STYLE ===== */
+.qr-btn,
+.shadow-btn{
+    background: #c40000;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 40px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+.qr-btn:hover,
+.shadow-btn:hover{
+    transform: scale(1.03);
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media(max-width:600px){
+
+    .fixed-buttons{
+        width: 92%;
+        bottom: 10px;
+    }
+
+    .qr-btn,
+    .shadow-btn{
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    body{
+        padding-bottom: 170px;
+    }
+}
 /* Tablets (≤ 1024px) */
 @media (max-width: 1024px) {
   .grid {
@@ -539,12 +599,19 @@
   window.location.href = "Shadow Projects Course Selection Page.html";
 }
 </script>
-<div id="qrModal" class="qr-modal"> <div class="qr-content"> <span class="close-btn" onclick="closeQR()">×</span> <h3>Scan for Admissions Information</h3> <img src="Untitled QR code.png" alt="QR Code"> </div> </div>
-<!-- ================= QR BUTTON (NEW) ================= --> <div class="qr-btn" onclick="openQR()"> 📱 Scan to Upload Documents </div>
-<div class="shadow-btn" onclick="openShadow()">
-  🚀 Shadow Projects
-</div>
-<script> function openQR(){ document.getElementById("qrModal").style.display = "flex"; } function closeQR(){ document.getElementById("qrModal").style.display = "none"; } </script>
+<!-- ================= FIXED BUTTON CONTAINER ================= -->
+<div class="fixed-buttons">
+
+	
+  <div class="qr-btn" onclick="openQR()">
+    📱 Scan to Upload Documents
+  </div>
+
+  <div class="shadow-btn" onclick="openShadow()">
+    🚀 Shadow Projects
+  </div>
+
+</div><script> function openQR(){ document.getElementById("qrModal").style.display = "flex"; } function closeQR(){ document.getElementById("qrModal").style.display = "none"; } </script>
 </body>
 </html>
 
